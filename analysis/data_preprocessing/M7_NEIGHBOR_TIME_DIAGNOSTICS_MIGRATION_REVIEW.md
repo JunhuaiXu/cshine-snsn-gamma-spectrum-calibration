@@ -1,5 +1,9 @@
 # M7 neighboring-crystal timing diagnostics migration review
 
+> Historical closure record. Current status is maintained in
+> `../../docs/REPRODUCIBILITY_STATUS.md`; current commands are maintained in
+> `../../docs/CHAPTER3_END_TO_END.md`.
+
 ## Scope
 
 M7 covers only the CsI05--CsI06 timing diagnostics used in thesis Sec. 3.3.2.

@@ -50,15 +50,6 @@ class RepositoryClosureTest(unittest.TestCase):
                 [MODULE.REQUIRED_DOCUMENTS[-1]],
             )
 
-    def test_stage_guide_requires_m10b(self):
-        with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
-            text = []
-            for stage in range(2, 13):
-                text.append("data_preprocessing.py m{0}".format(stage))
-            (root / "REPRODUCE.md").write_text("\n".join(text), encoding="utf-8")
-            self.assertEqual(MODULE.check_stage_guide(root), ["m10b"])
-
     def test_citation_check_requires_project_and_article_metadata(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

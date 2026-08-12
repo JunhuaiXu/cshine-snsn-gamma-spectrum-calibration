@@ -1,5 +1,9 @@
 # M12 observed-spectrum interface review
 
+> Historical closure record. Current status is maintained in
+> `../../docs/REPRODUCIBILITY_STATUS.md`; current commands are maintained in
+> `../../docs/CHAPTER3_END_TO_END.md`.
+
 ## Scope
 
 M12 freezes only the detector-level observed spectrum delivered by the M11

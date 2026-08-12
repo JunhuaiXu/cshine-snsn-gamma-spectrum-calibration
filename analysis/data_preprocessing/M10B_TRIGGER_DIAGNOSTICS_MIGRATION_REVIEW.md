@@ -1,5 +1,9 @@
 # M10B trigger-diagnostics migration review
 
+> Historical closure record. Current status is maintained in
+> `../../docs/REPRODUCIBILITY_STATUS.md`; current commands are maintained in
+> `../../docs/CHAPTER3_END_TO_END.md`.
+
 ## Scope
 
 M10B closes the trigger-monitor and trigger-conditioned part of the Chapter 3

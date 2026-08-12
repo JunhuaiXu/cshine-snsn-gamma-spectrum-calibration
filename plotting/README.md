@@ -19,31 +19,15 @@ Create one public-safe staged JSON record under [`records/`](records/) with
 The JSON record makes state-order and checksum checks machine-readable; this
 README remains the human-readable figure/code and validation guide.
 
-## Figure-to-code map
+## Figure registry
 
-| Stable ID | Thesis location | Figure content | Historical source | Portable script | Output |
-|---|---|---|---|---|---|
-| `time-amplitude-csi05` | Sec. 3.3.1 | Time-amplitude correlation before and after time-walk correction for CsI05 | `DataPreprocessing/step3-time/DrawRebin.ipynb` | `plot_time_amplitude_correction.py` | `results/figures/time_walk/individual/cshine_gamma_time_amplitude_correction_CsI05_horizontal.pdf` |
-| `time-amplitude-all` | Sec. 3.3.1 | Separate before/after overviews for all 15 CsI(Tl) channels | `DataPreprocessing/step3-time/DrawRebin.ipynb` | `plot_time_amplitude_correction.py --all-crystals` | `results/figures/time_walk/overview/all_crystals_{before,after}_correction.pdf` |
-| `neighbor-time-csi05-csi06` | Sec. 3.3.2 | CsI05--CsI06 corrected-time correlation without an energy cut and with \(E_5+E_6\geq30\) MeV | `DataPreprocessing/step4-convert.0308.PreRun/draw_GammaTimeDiff.C` | M7 `neighbor_time_diagnostics.root:h2_all,h2_cut`; `root/draw_neighbor_time_diagnostics.C`; `plot_neighbor_time_correlation.py` | `results/figures/neighbor_time_correlation/cshine_gamma_neighbor_time_correlation_csi05_csi06_horizontal.pdf` |
-| `unit05-time-neighbor-difference` | Sec. 3.3.2 | (a) CsI05 corrected-time distribution; (b) CsI05--CsI06 corrected-time difference before and after the \(E_5+E_6\geq30\) MeV selection | `DataPreprocessing/step4-convert.0308.PreRun/draw_GammaTimeDiff.C` | M7 `neighbor_time_diagnostics.root:h3,h1,hh_diff`; `root/draw_neighbor_time_diagnostics.C`; `plot_unit_time_and_neighbor_difference.py` | `results/figures/unit_time_difference/cshine_gamma_unit05_time_and_neighbor_difference_horizontal.pdf` |
-| `reconstruction-multiplicity` | Sec. 3.3.5 | (a) reconstructed cluster size versus total energy; (b) accepted reconstructed cores per trigger before and after the 35 MeV requirement | `DataPreprocessing/step7-DeltaYrelated/h2_check.C` and `Drawhistos.C` | `plot_reconstruction_multiplicity.py` | `results/figures/reconstruction_multiplicity/cshine_gamma_cluster_size_and_core_multiplicity_horizontal.pdf` |
-| `cshine-spatial-correlation-energy-intervals` | Sec. 3.4.1 | Spatial correlation between \(\delta_x\) and \(\delta_y\) for 10--100 MeV and above 100 MeV | `DataPreprocessing/step7-DeltaYrelated/h2_check.C`, `get_ax_ay.hh`, and `Drawhistos.C` | `root/draw_spatial_correlation_energy_intervals.C` and `plot_spatial_correlation_energy_intervals.py` | `results/figures/spatial_correlation_energy_intervals/cshine_gamma_spatial_correlation_energy_intervals_horizontal.pdf` |
-| `cshine-energy-spatial-spread-correlations` | Sec. 3.4.1 | Total reconstructed energy versus \(\delta_y\) and \(\delta_r\) | `DataPreprocessing/step7-DeltaYrelated/h2_check.C`, `get_ax_ay.hh`, and `Drawhistos.C` | `root/draw_energy_spatial_spread_correlations.C` and `plot_energy_spatial_spread_correlations.py` | `results/figures/energy_spatial_spread_correlations/cshine_gamma_energy_spatial_spread_correlations_horizontal.pdf` |
-| `cshine-core-total-energy-correlations` | Sec. 3.4.1 candidate | Core-crystal energy versus reconstructed total energy for central and side cores | `DataPreprocessing/step7-DeltaYrelated/h2_check.C` and `Drawhistos.C` | `root/draw_core_total_energy_correlations.C` and `plot_core_total_energy_correlations.py` | `results/figures/core_total_energy_correlations/cshine_gamma_core_total_energy_correlations_horizontal.pdf` |
-| `cshine-cosmic-muon-topology` | Sec. 3.5.1 | Beam-off high-energy spatial spread and core-energy sharing | Historical figure: `step11-otherFigsLongPaper/Fig2-deltaxdeltayBKG/`; thesis selection: `DataPreprocessing/step7-DeltaYrelated/h2_check_BKG.C` | `root/draw_cosmic_muon_topology.C` and `plot_cosmic_muon_topology.py` | `results/figures/cosmic_muon_topology/cshine_gamma_cosmic_muon_topology_horizontal.pdf` |
-| `cshine-slow-background-subtraction-figure` | Sec. 3.5.1 | Beam-on spectrum, scaled beam-off spectrum, and their difference | `DataPreprocessing/step4-convert.0308/EnergySpecGen.C` | `root/draw_slow_coincidence_background_subtraction.C` and `plot_slow_coincidence_background_subtraction.py` | `results/figures/slow_coincidence_background_subtraction/cshine_gamma_slow_coincidence_background_subtraction_horizontal.pdf` |
-| `cshine-fast-background-subtraction-figure` | Sec. 3.5.3 | Fast-coincidence spectrum, equal-width random-window spectrum, and their direct difference | `DataPreprocessing/step10-DifferentTriggerMode/RemoveSSDM2/step4-convert.0308.data/EnergySpecGen.C` | `root/draw_fast_coincidence_background_subtraction.C` and `plot_fast_coincidence_background_subtraction.py` | `results/figures/fast_coincidence_background_subtraction/cshine_gamma_fast_coincidence_background_subtraction_horizontal.pdf` |
-| `cshine-central-edge-spectrum-consistency` | Sec. 3.6.2 | Background-subtracted central-core, edge-core, and combined spectra before and after a common shape normalization | `DataPreprocessing/step4-convert.0308.PreRun/MoreFigs/SpecCompare.ipynb`, with upstream `all_recon.C` and `all_recon_BKG.C` | `root/draw_central_edge_spectrum_consistency.C` and `plot_central_edge_spectrum_consistency.py` | `results/figures/central_edge_spectrum_consistency/cshine_gamma_central_edge_spectrum_consistency_horizontal.pdf` |
-| `cshine-energy-core-time` | Sec. 3.3.4 | Reconstructed total energy versus corrected time of the reconstructed core crystal | `DataPreprocessing/step7-DeltaYrelated/h2_check.C` and `Drawhistos.C` | `root/draw_energy_core_time_correlation.C` and `plot_energy_core_time_correlation.py` | `results/figures/energy_core_time_correlation/cshine_gamma_energy_core_time_correlation.pdf` |
-| `cshine-trigger-tdc-distributions` | Sec. 3.3.4 | TDC-channel distributions for the five recorded individual trigger monitors and the global trigger | `DataPreprocessing/step8-TimeCheck/step6-TimeWalkPlot/step7-DeltaYrelated/checkTrig.C`, `Drawhistos.C`, and `TriggerTDC.ipynb` | `root/draw_trigger_tdc_distributions.C` and `plot_trigger_tdc_distributions.py` | `results/figures/trigger_tdc_distributions/cshine_gamma_trigger_tdc_distributions.pdf` |
-| `cshine-trigger-energy-time-correlations` | Sec. 3.3.4 | Reconstructed total energy versus corrected core time for five monitored trigger conditions | Five `DataPreprocessing/step8-TimeCheck/step5-*` branches; each uses `aa_example.C`, `h2_check.C`, and `Drawhistos.C` | `root/draw_trigger_energy_time_correlations.C` and `plot_trigger_energy_time_correlations.py` | `results/figures/trigger_energy_time_correlations/cshine_gamma_trigger_energy_time_correlations.pdf` |
-| `cshine-spectra-reconstruction` | Sec. 3.3.5 | Individual per-crystal spectra and reconstructed core spectra | `DataPreprocessing/step4-convert.0308.PreRun/aa_example.C`, `MoreFigs/draw_merge_h_eDep.C`, and `MoreFigs/draw_merge_h_recon.ipynb` | M8/M9 with `reconstruction_spectra_figure_run_groups.tsv`; `plot_reconstruction_spectra.py` | `results/figures/reconstruction_spectra/cshine_gamma_spectra_before_after_reconstruction.pdf` |
-| `cshine-event-display` | Sec. 3.4.1 | Representative gamma-ray and cosmic-muon deposited-energy patterns on the 4 x 4 CsI(Tl) grid | `EventDisplay/EventALL/h2_check.C`, `EventDisplay/EventDisplay.C`, `EventALL/lego_0.root`, and `EventDisplay/lego_5.root` | `analysis/data_preprocessing/validation/build_event_display_records.cxx`, `validate_event_display_records.cxx`, and `root/draw_event_display_horizontal.C` | `results/remote_runs/event-display-root-layout/20260811T161500Z/event_display/cshine_gamma_event_display_horizontal.pdf` |
+The registry below is the human-readable authority for figure provenance and
+adoption. Detailed input-object and selection contracts are maintained in
+[`../docs/DATA_ACCESS.md`](../docs/DATA_ACCESS.md); machine-readable work
+records are maintained in [`records/`](records/). Output paths are declared by
+the corresponding record and plotting program rather than repeated here.
 
-## Status registry
-
-| Stable ID | Historical trace | Portable script | Real-data validation | Thesis use |
+| Stable ID | Historical trace | Portable entry | Real-data validation | Thesis use |
 |---|---|---|---|---|
 | `time-amplitude-csi05` | Traced | Shared-scale rendering implemented; local synthetic check passed | Revised rendering regenerated with real inputs; count checks passed | Shared-scale figure used in Sec. 3.3.1 |
 | `time-amplitude-all` | Traced | Shared-scale rendering implemented; local synthetic check passed | Revised rendering regenerated for all 15 real channels; count checks passed | Shared-scale figures used in Appendix A |
@@ -547,75 +531,22 @@ For each requested figure:
 Do not batch-convert unrelated figures, modify the server production code, or
 insert a generated output into the thesis automatically.
 
-## Command
+## Running a renderer
+
+Each Python renderer accepts `--help`, an authorized analysis root, and an
+output directory. For example:
 
 ```bash
-# One channel
+python3 plotting/plot_time_amplitude_correction.py --help
 python3 plotting/plot_time_amplitude_correction.py \
   --analysis-root /path/to/gamma2024 \
   --crystal-index 5 \
   --output-dir results/figures
-
-# All 15 channels, two 4 x 4 overviews, and a validation CSV
-python3 plotting/plot_time_amplitude_correction.py \
-  --analysis-root /path/to/gamma2024 \
-  --all-crystals \
-  --output-dir results/figures
-
-# Sec. 3.3.2: CsI05--CsI06, no cut and E5 + E6 >= 30 MeV
-python3 plotting/plot_neighbor_time_correlation.py \
-  --analysis-root /path/to/gamma2024 \
-  --output-dir results/figures
-
-# Analysis-note Fig. 6: portable ROOT source panels
-root -l -b -q \
-  'plotting/root/draw_unit_time_and_neighbor_difference.C("/path/to/gamma2024","results/figures/unit_time_difference/root")'
-
-# Analysis-note Fig. 6: horizontal Python presentation
-python3 plotting/plot_unit_time_and_neighbor_difference.py \
-  --analysis-root /path/to/gamma2024 \
-  --output-dir results/figures
-
-# Analysis-note Fig. 8: cluster size and event-core multiplicity
-python3 plotting/plot_reconstruction_multiplicity.py \
-  --analysis-root /path/to/gamma2024 \
-  --output-dir results/figures
-
-# Analysis-note Fig. 10: delta_y versus delta_x in two energy intervals
-python3 plotting/plot_spatial_correlation_energy_intervals.py \
-  --analysis-root /path/to/gamma2024 \
-  --output-dir results/figures
-
-# Analysis-note Fig. 11: E_tot versus delta_y and delta_r
-python3 plotting/plot_energy_spatial_spread_correlations.py \
-  --analysis-root /path/to/gamma2024 \
-  --output-dir results/figures
-
-# Analysis-note Fig. 12: E_core versus E_tot for central and side cores
-python3 plotting/plot_core_total_energy_correlations.py \
-  --analysis-root /path/to/gamma2024 \
-  --output-dir results/figures
-
-# Analysis-note Fig. 13: E_tot versus corrected core time
-python3 plotting/plot_energy_core_time_correlation.py \
-  --analysis-root /path/to/gamma2024 \
-  --output-dir results/figures
-
-# Analysis-note Fig. 14: monitored trigger TDC distributions
-python3 plotting/plot_trigger_tdc_distributions.py \
-  --analysis-root /path/to/gamma2024 \
-  --output-dir results/figures
-
-# Analysis-note Fig. 15: E_tot versus corrected core time by trigger
-python3 plotting/plot_trigger_energy_time_correlations.py \
-  --analysis-root /path/to/gamma2024 \
-  --output-dir results/figures
-
-# Thesis Fig. 3.17 / PRC SlowWinSpec: slow-coincidence beam-off subtraction
-python3 plotting/plot_slow_coincidence_background_subtraction.py \
-  --analysis-root /path/to/gamma2024 \
-  --output-dir results/figures
 ```
+
+Use the stable ID in the registry to locate the corresponding Python program,
+ROOT reference under `plotting/root/`, staged record, and bounded remote job.
+This avoids maintaining a second command catalog in this document.
 
 The script directly ports the `redrawNew` operations: 16 x 16 two-dimensional
 bin summation, reciprocal time-walk fit, cell-by-cell time correction,

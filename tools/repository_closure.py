@@ -17,7 +17,7 @@ import sys
 from pathlib import Path
 
 
-TOOL_VERSION = "0.3.0"
+TOOL_VERSION = "0.4.0"
 SCRIPT_PATH = Path(__file__).resolve()
 REPOSITORY_ROOT = SCRIPT_PATH.parents[1]
 PIPELINE_REGISTRY = (
@@ -165,18 +165,6 @@ def check_license(root=REPOSITORY_ROOT):
     return [token for token in required_tokens if token not in license_text]
 
 
-def check_stage_guide(root=REPOSITORY_ROOT):
-    guide = (Path(root) / "REPRODUCE.md").read_text(encoding="utf-8")
-    missing = []
-    for stage in range(2, 13):
-        token = "data_preprocessing.py m{0}".format(stage)
-        if token not in guide:
-            missing.append("m{0}".format(stage))
-    if "data_preprocessing.py m10b" not in guide:
-        missing.append("m10b")
-    return missing
-
-
 def check_end_to_end_guide(root=REPOSITORY_ROOT):
     guide_path = Path(root) / "docs" / "CHAPTER3_END_TO_END.md"
     if not guide_path.is_file():
@@ -260,10 +248,6 @@ def audit(root=REPOSITORY_ROOT, strict_release=False):
             )
         )
 
-    missing_stages = check_stage_guide(root)
-    if missing_stages:
-        errors.append("REPRODUCE.md lacks stage commands: {0}".format(", ".join(missing_stages)))
-
     missing_end_to_end_tokens = check_end_to_end_guide(root)
     if missing_end_to_end_tokens:
         errors.append(
@@ -297,7 +281,6 @@ def audit(root=REPOSITORY_ROOT, strict_release=False):
         "missing_documents": missing_documents,
         "missing_citation_metadata": missing_citation_tokens,
         "missing_license_metadata": missing_license_tokens,
-        "missing_stage_commands": missing_stages,
         "missing_end_to_end_handoffs": missing_end_to_end_tokens,
         "private_boundary_findings": private_findings,
         "missing_release_files": missing_release_files,

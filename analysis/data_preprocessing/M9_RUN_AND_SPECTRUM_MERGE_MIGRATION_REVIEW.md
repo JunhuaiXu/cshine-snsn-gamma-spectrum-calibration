@@ -1,5 +1,9 @@
 # M9 run and spectrum-merge migration review
 
+> Historical closure record. Current status is maintained in
+> `../../docs/REPRODUCIBILITY_STATUS.md`; current commands are maintained in
+> `../../docs/CHAPTER3_END_TO_END.md`.
+
 ## Scope
 
 M9 closes the run-group and spectrum-merging stage between the M8 per-event

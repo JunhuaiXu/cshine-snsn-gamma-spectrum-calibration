@@ -1,5 +1,9 @@
 # M10A Chapter 3 diagnostics migration review
 
+> Historical closure record. Current status is maintained in
+> `../../docs/REPRODUCIBILITY_STATUS.md`; current commands are maintained in
+> `../../docs/CHAPTER3_END_TO_END.md`.
+
 ## Scope
 
 M10 is split into two bounded parts.  M10A covers the central beam-on and

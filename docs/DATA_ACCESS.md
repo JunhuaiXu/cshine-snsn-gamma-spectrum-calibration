@@ -360,8 +360,8 @@ contract.
 The plotting layer performs no event reconstruction, rebinning,
 normalization, smoothing, or fitting. It records entries, displayed counts,
 flow counts, input and output checksums, and software versions in JSON. New
-outputs are written only below `--output-dir` and remain candidates until
-author review.
+outputs are written only below `--output-dir`; validation and thesis adoption
+are tracked in `plotting/records/` and summarized in `plotting/README.md`.
 
 ## Trigger-monitoring TDC ROOT-output contract
 
@@ -450,9 +450,9 @@ The authorized real-data run recorded all five input checksums and verified
 the required 100 x 200 object schema. Panel entries are 15,140,779,
 4,658,621, 50,384, 193,610, and 3,925; displayed-bin counts are 15,096,166,
 4,511,595, 48,813, 186,990, and 3,721. The generated PDF, PNG, and JSON
-outputs were downloaded and checksum-verified. They remain candidate
-artifacts in the local archive; the author-approved PDF is used in thesis
-Sec. 3.3.4. That adopted artifact remains the historical-policy result.
+outputs were downloaded and checksum-verified. The author-approved PDF is
+used in thesis Sec. 3.3.4 and remains the historical-policy result; other
+generated artifacts are retained only as validation records.
 
 For portable M10B outputs, use:
 

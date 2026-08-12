@@ -1,5 +1,9 @@
 # M8 shower-reconstruction migration review
 
+> Historical closure record. Current status is maintained in
+> `../../docs/REPRODUCIBILITY_STATUS.md`; current commands are maintained in
+> `../../docs/CHAPTER3_END_TO_END.md`.
+
 ## Scope
 
 M8 migrates the per-event CSHINE-Gamma shower reconstruction used in thesis

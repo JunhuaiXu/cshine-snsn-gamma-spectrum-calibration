@@ -1,5 +1,9 @@
 # M13 repository-closure review
 
+> Historical closure record. Current status is maintained in
+> `../../docs/REPRODUCIBILITY_STATUS.md`; current commands are maintained in
+> `../../docs/CHAPTER3_END_TO_END.md`.
+
 ## Scope
 
 M13 closes the documentation, record, and public-boundary tooling for the
@@ -40,3 +44,24 @@ M13 is a closed repository-documentation stage. The overall analysis remains
 **code migrated, published result not rerun**. M0B is now source-closed, but
 that later closure is likewise not a claim that the full experimental sample
 or publication result has been rerun.
+
+## Post-release documentation consolidation
+
+The public documentation was consolidated after release without changing any
+physics implementation, selection, ROOT object, or evidence claim. The
+documentation authorities are now separated explicitly:
+
+- `README.md` provides project scope and navigation;
+- `REPRODUCE.md` provides requirements and verification entry points;
+- `docs/CHAPTER3_END_TO_END.md` is the only complete M2--M12 command source;
+- `docs/ANALYSIS_IO_MAP.md` is the compact stage crosswalk;
+- `docs/DATA_ACCESS.md` defines data and ROOT-object contracts;
+- `docs/REPRODUCIBILITY_STATUS.md` defines the current evidence level;
+- `plotting/README.md` provides one figure registry rather than separate,
+  overlapping mapping and status tables.
+
+The repository-closure audit was updated to verify the authoritative
+end-to-end guide instead of requiring duplicate stage commands in
+`REPRODUCE.md`. Manifest verification, the pipeline and figure-record checks,
+the public-boundary audit, local links, and the complete Python test suite all
+pass after this consolidation.
