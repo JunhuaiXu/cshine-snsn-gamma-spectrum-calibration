@@ -52,7 +52,10 @@ COMPLETED_STATUSES = {
     "numerically_validated",
     "closed",
 }
-PRIVATE_MARKERS = ("/nas/", "/Users/", "xjh23@", "bobby@", "token=", "password=")
+PRIVATE_MARKERS = ("/nas/", "/Users/", "token=", "password=")
+PRIVATE_ACCOUNT_PATTERN = re.compile(
+    r"\b[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\b", re.IGNORECASE
+)
 
 
 class RegistryError(RuntimeError):
@@ -260,6 +263,8 @@ def validate_registry(
         for marker in PRIVATE_MARKERS:
             if marker.lower() in text.lower():
                 errors.append("private marker {0!r} found in registry string #{1}".format(marker, location))
+        if PRIVATE_ACCOUNT_PATTERN.search(text):
+            errors.append("account or email found in registry string #{0}".format(location))
 
     return errors, warnings
 

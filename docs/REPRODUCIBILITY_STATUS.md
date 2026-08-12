@@ -22,6 +22,12 @@ those outputs and M9--M12. This makes the migrated chain executable by an
 authorized user, but it does not by itself upgrade the evidence level to a
 full numerical reproduction.
 
+For a compact review of every stage's input role, portable output, principal
+ROOT objects, and downstream consumer, see
+[`ANALYSIS_IO_MAP.md`](ANALYSIS_IO_MAP.md). It is a navigation table; the
+machine-readable authority remains `pipeline_stages.json`, and exact commands
+remain in `CHAPTER3_END_TO_END.md`.
+
 Several thesis figures have separate real-data figure records because their
 historical ROOT objects or approved redraws were checked before the complete
 upstream chain was migrated.  Each such record stores the physics contract,

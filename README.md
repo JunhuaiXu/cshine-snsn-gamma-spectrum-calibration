@@ -31,10 +31,9 @@ This project has three distinct code layers:
   for thesis-oriented figure layouts.
 
 The migrated code under `DataPreprocessing/` defines the complete repository
-scope. Later physics analyses are maintained, if released, as separate
-projects rather than future subdirectories of this repository.
-
-The planned companion projects are:
+scope. Later physics analyses belong to separate projects rather than
+subdirectories of this repository. The agreed companion-project boundaries
+are:
 
 - `cshine-snsn-src-inference`: IBUU inputs, detector-response production and
   folding, high-momentum-tail inference, and inference systematics;
@@ -73,14 +72,17 @@ reviewed and the author explicitly decides to include it.
 2. [`docs/CHAPTER3_END_TO_END.md`](docs/CHAPTER3_END_TO_END.md): the single
    ordered M2--M12 runbook, including the separate beam-on and beam-off M6
    productions and their exact handoff to M9--M12;
-3. [`analysis/data_preprocessing/README.md`](analysis/data_preprocessing/README.md):
+3. [`docs/ANALYSIS_IO_MAP.md`](docs/ANALYSIS_IO_MAP.md): compact M0B--M13
+   crosswalk from physical inputs to portable outputs, ROOT objects, and
+   downstream consumers;
+4. [`analysis/data_preprocessing/README.md`](analysis/data_preprocessing/README.md):
    current historical code and data-processing scope;
-4. [`plotting/README.md`](plotting/README.md): one-to-one figure/code map and
+5. [`plotting/README.md`](plotting/README.md): one-to-one figure/code map and
    author-review status;
-5. [`tools/README.md`](tools/README.md): M0--M12 orchestration, source indexing,
+6. [`tools/README.md`](tools/README.md): M0--M12 orchestration, source indexing,
    pipeline-registry checks, figure records, and remote jobs;
-6. [`remote_jobs/README.md`](remote_jobs/README.md): bounded remote-job schema;
-7. [`docs/DATA_ACCESS.md`](docs/DATA_ACCESS.md): portable input layout and data
+7. [`remote_jobs/README.md`](remote_jobs/README.md): bounded remote-job schema;
+8. [`docs/DATA_ACCESS.md`](docs/DATA_ACCESS.md): portable input layout and data
    boundary.
 
 For short server-side figure jobs, `tools/remote_figure.py` reuses one SSH

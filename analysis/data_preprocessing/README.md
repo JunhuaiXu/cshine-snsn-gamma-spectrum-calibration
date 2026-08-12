@@ -18,13 +18,13 @@ timing information to the measured detector-level gamma-ray spectrum.
 Detailed call graphs, server paths, and the central-spectrum file chain remain
 in private thesis-workspace provenance records outside this public-safe
 project. This README contains only the portable analysis contract needed by a
-future repository user.
+repository user.
 
 ## Current migration boundary
 
-The two existing Python programs reproduce thesis figure layouts, but they do
-not constitute a migration of the upstream analysis. The target now covers the
-complete Chapter 3 central `DataPreprocessing` chain:
+The Python plotting programs reproduce selected thesis figure layouts, but
+they do not constitute a migration of the upstream analysis. The migrated
+scope covers the complete Chapter 3 central `DataPreprocessing` chain:
 
 1. source-background subtraction;
 2. low-/high-gain relation;
@@ -636,6 +636,7 @@ cmake -DCMAKE_INSTALL_PREFIX=/desired/install/prefix ..
 cmake --build . --target install
 ```
 
-The detailed internal migration plan and provenance paths are maintained
-outside this public repository. No bulk refactoring of the historical
-directory is planned during the current writing stage.
+The detailed internal migration plan and exact collaborator paths are
+maintained outside this public repository. The compact public stage-level
+input/output crosswalk is provided in
+[`../../docs/ANALYSIS_IO_MAP.md`](../../docs/ANALYSIS_IO_MAP.md).

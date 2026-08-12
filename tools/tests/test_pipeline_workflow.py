@@ -93,6 +93,15 @@ class PipelineWorkflowTest(unittest.TestCase):
         )
         self.assertTrue(any("private marker" in value for value in errors))
 
+    def test_account_or_email_is_rejected_without_storing_real_examples(self):
+        item = stage("M1")
+        item["external_inputs"] = ["internal-user@example.invalid"]
+        registry = {"schema_version": 1, "stages": [item]}
+        errors, _ = MODULE.validate_registry(
+            registry, source_ids=set(), thesis_output_ids=set(), repository_root=Path(".")
+        )
+        self.assertTrue(any("account or email" in value for value in errors))
+
     def test_next_prefers_in_progress_stage(self):
         registry = {
             "schema_version": 1,

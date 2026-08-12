@@ -11,6 +11,7 @@ import argparse
 import datetime
 import json
 import os
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -29,10 +30,11 @@ PIPELINE_REGISTRY = (
 PRIVATE_MARKERS = (
     "/nas/",
     "/Users/",
-    "xjh23@",
-    "bobby@",
     "token=",
     "password=",
+)
+PRIVATE_ACCOUNT_PATTERN = re.compile(
+    r"\b[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\b", re.IGNORECASE
 )
 IGNORED_DIRECTORY_NAMES = {
     ".git",
@@ -55,6 +57,7 @@ REQUIRED_DOCUMENTS = (
     "README.md",
     "REPRODUCE.md",
     "docs/CHAPTER3_END_TO_END.md",
+    "docs/ANALYSIS_IO_MAP.md",
     "docs/DATA_ACCESS.md",
     "docs/REPRODUCIBILITY_STATUS.md",
     "plotting/README.md",
@@ -115,6 +118,15 @@ def scan_public_boundary(root=REPOSITORY_ROOT):
                             "text": line.strip()[:240],
                         }
                     )
+            if PRIVATE_ACCOUNT_PATTERN.search(line):
+                findings.append(
+                    {
+                        "path": relative,
+                        "line": line_number,
+                        "marker": "account-or-email",
+                        "text": line.strip()[:240],
+                    }
+                )
     return findings
 
 

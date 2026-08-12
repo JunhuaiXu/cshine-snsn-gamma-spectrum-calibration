@@ -28,6 +28,16 @@ class RepositoryClosureTest(unittest.TestCase):
             self.assertEqual(len(findings), 1)
             self.assertEqual(findings[0]["path"], "source.py")
 
+    def test_public_scan_rejects_account_or_email_without_storing_real_examples(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "README.md").write_text(
+                "connect as internal-user@example.invalid\n", encoding="utf-8"
+            )
+            findings = MODULE.scan_public_boundary(root)
+            self.assertEqual(len(findings), 1)
+            self.assertEqual(findings[0]["marker"], "account-or-email")
+
     def test_required_document_check_reports_only_missing_files(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

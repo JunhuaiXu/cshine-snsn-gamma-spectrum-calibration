@@ -44,10 +44,11 @@ THESIS_STATUSES = {"not_integrated", "candidate", "used", "final"}
 PRIVATE_MARKERS = (
     "/nas/",
     "/Users/",
-    "xjh23@",
-    "bobby@",
     "token=",
     "password=",
+)
+PRIVATE_ACCOUNT_PATTERN = re.compile(
+    r"\b[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\b", re.IGNORECASE
 )
 
 
@@ -328,6 +329,8 @@ def validate_record(record):
             errors.append("absolute or home-relative path in {0}".format(location))
         if any(marker in value for marker in PRIVATE_MARKERS):
             errors.append("private path or credential marker in {0}".format(location))
+        if PRIVATE_ACCOUNT_PATTERN.search(value):
+            errors.append("account or email in {0}".format(location))
 
     return errors
 

@@ -46,6 +46,15 @@ class FigureWorkflowTest(unittest.TestCase):
         errors = MODULE.validate_record(record)
         self.assertTrue(any("private path" in item for item in errors))
 
+    def test_account_or_email_is_rejected_without_storing_real_examples(self):
+        args = init_arguments("unused")
+        record = MODULE.new_record(args)
+        record["historical"]["source_files"][0]["path"] = (
+            "internal-user@example.invalid:DataPreprocessing/example.C"
+        )
+        errors = MODULE.validate_record(record)
+        self.assertTrue(any("account or email" in item for item in errors))
+
     def test_validation_cannot_skip_contract_and_portable_entry(self):
         args = init_arguments("unused")
         record = MODULE.new_record(args)
