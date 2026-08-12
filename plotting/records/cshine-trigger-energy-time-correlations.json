@@ -1,0 +1,201 @@
+{
+  "author_decision": {
+    "date": "2026-08-10",
+    "notes": "The author approved the real-data two-row, three-column output for thesis integration. The downloaded PDF was copied unchanged into the final chapter-figure directory.",
+    "status": "confirmed"
+  },
+  "candidate": {
+    "artifacts": [
+      {
+        "path": "results/figures/trigger_energy_time_correlations/cshine_gamma_trigger_energy_time_correlations.pdf",
+        "role": "author-approved two-row, three-column vector output",
+        "sha256": "f2f4499a759d47666270409e3982dcaa0f15d35095e00c186c016e05147cd210",
+        "size_bytes": 482186
+      },
+      {
+        "path": "results/figures/trigger_energy_time_correlations/cshine_gamma_trigger_energy_time_correlations.png",
+        "role": "two-row, three-column rendered candidate",
+        "sha256": "bc9a82641e6bee95c9b77184163f952d9cd6f69909c1ea290976501e845a2637",
+        "size_bytes": 232543
+      },
+      {
+        "path": "results/figures/trigger_energy_time_correlations/cshine_gamma_trigger_energy_time_correlations.json",
+        "role": "real-data validation record",
+        "sha256": "f1c61dad4a2c1cc14e4c7af9b8cdb24db7a9de084a350127d64c2e501045ef6b",
+        "size_bytes": 6540
+      }
+    ],
+    "status": "generated"
+  },
+  "created_utc": "2026-08-10T23:38:58Z",
+  "figure_class": "reproducible_redraw",
+  "historical": {
+    "historical_outputs": [
+      {
+        "path": "analysis-note/figures/DiffTrig.pdf",
+        "role": "analysis-note Fig. 15 five-panel composition",
+        "sha256": "952c6b21e93b5a8f5c8f813ab99d113b286af0a4635d0516b9170514dcf69739",
+        "size_bytes": 346387
+      }
+    ],
+    "input_objects": [
+      "step5-onlygamma/step7-DeltaYrelated/h2_check.root:ALL_h2_TOF_TotalE",
+      "step5-SSDM2/step7-DeltaYrelated/h2_check.root:ALL_h2_TOF_TotalE",
+      "step5-NAandSSD/step7-DeltaYrelated/h2_check.root:ALL_h2_TOF_TotalE",
+      "step5-T0andNA/step7-DeltaYrelated/h2_check.root:ALL_h2_TOF_TotalE",
+      "step5-T0LS/step7-DeltaYrelated/h2_check.root:ALL_h2_TOF_TotalE"
+    ],
+    "publication_or_note_figure": "Analysis-note Fig. 15",
+    "source_files": [
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step8-TimeCheck/step5-onlygamma/step4-convert.0308/aa_example.C",
+        "sha256": "b4b72a3a7894873849a0b2e9fe9094661c6d769fcecc2f148be00116cd4029ac"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step8-TimeCheck/step5-SSDM2/step4-convert.0308/aa_example.C",
+        "sha256": "0a4ab3f0adf54a7323e632cdee309287d8ea94e38259352b1f32bec3b581494c"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step8-TimeCheck/step5-NAandSSD/step4-convert.0308/aa_example.C",
+        "sha256": "fc15e15a6a1a3904d3f13cb990e8e10b2cfe64ba05d3e5dc5c631479298ef6da"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step8-TimeCheck/step5-T0andNA/step4-convert.0308/aa_example.C",
+        "sha256": "e8704bf23643bd02e883a792ba43a4f41c15422c9b401ed22ee6ddee43801ad3"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step8-TimeCheck/step5-T0LS/step4-convert.0308/aa_example.C",
+        "sha256": "01acd48bf820fceb1fae6d3d2c6498cd743a927750a2338eb13c3521e895b3b4"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step8-TimeCheck/step5-onlygamma/step7-DeltaYrelated/h2_check.C",
+        "sha256": "4e788e7068c893b39a159f58dd36d59af3250b9ee8831056e956bab05c264e6f"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step8-TimeCheck/step5-onlygamma/step7-DeltaYrelated/Drawhistos.C",
+        "sha256": "1cf162e27356bf296ab273bf113f9f169b761f51eccff65b5cf1d1347027f545"
+      }
+    ],
+    "status": "source_frozen"
+  },
+  "physics_contract": {
+    "binning": [
+      "each ALL_h2_TOF_TotalE object has 100 x 200 bins over T_core=-500--500 ns and E_tot=0--200 MeV"
+    ],
+    "display_policy": [
+      "five panels in two rows and three columns; lower-right pad intentionally empty",
+      "independent logarithmic count scale for each trigger-conditioned panel",
+      "empty bins masked; underflow and overflow recorded but not drawn",
+      "panel letter and trigger mode placed at the upper-left with a non-opaque white outline"
+    ],
+    "fit_or_transform": "none in the plotting layer; trigger branching and event reconstruction are performed by the frozen upstream ROOT analysis",
+    "inputs": [
+      "five step5-* trigger branches under DataPreprocessing/step8-TimeCheck",
+      "ALL_h2_TOF_TotalE from each branch's step7-DeltaYrelated/h2_check.root"
+    ],
+    "normalization": "none",
+    "sample": "Fixed March 4--10 reconstructed-event sample, separated by the five recorded individual trigger-monitor conditions.",
+    "selections": [
+      "panel (a): 100 <= TDC_Gamma_Trig_array[17] <= 4000",
+      "panel (b): 100 <= TDC_Gamma_Trig_array[18] <= 4000",
+      "panel (c): 100 <= TDC_Gamma_Trig_array[19] <= 4000",
+      "panel (d): 100 <= TDC_Gamma_Trig_array[20] <= 4000",
+      "panel (e): 100 <= TDC_Gamma_Trig_array[22] <= 4000",
+      "the valid-monitor condition does not isolate only the self-trigger TDC peak",
+      "the frozen analysis-note Fig. 15 producer requires count_veto == 0 for central cores 5, 6, 9, 10 and applies no veto requirement to side cores 4, 7, 8, 11, 13, 14",
+      "the author-reviewed main-analysis definition instead leaves central cores unrestricted by veto and requires count_veto == 0 for side cores; M10B stores this reviewed variant separately and does not substitute it for the adopted historical figure"
+    ],
+    "status": "frozen",
+    "variables": [
+      "panel (a): SSD M1 & CsI M1, trigger-monitor index 17",
+      "panel (b): SSD M2, trigger-monitor index 18",
+      "panel (c): SSD M1 & NA M1, trigger-monitor index 19",
+      "panel (d): NA M1 & T0, trigger-monitor index 20",
+      "panel (e): LS & T0, trigger-monitor index 22",
+      "horizontal axis: corrected time T_core of the reconstructed core crystal",
+      "vertical axis: reconstructed cluster energy E_tot"
+    ]
+  },
+  "portable": {
+    "command": "python3 plotting/plot_trigger_energy_time_correlations.py --portable-root /path/to/trigger_diagnostics.root --selection-policy historical --output-dir results/figures",
+    "minimum_python": "3.6",
+    "preserved_root_sources": [
+      "../gamma2024_code_snapshot/DataPreprocessing/step8-TimeCheck/step5-onlygamma/step4-convert.0308/aa_example.C",
+      "../gamma2024_code_snapshot/DataPreprocessing/step8-TimeCheck/step5-SSDM2/step4-convert.0308/aa_example.C",
+      "../gamma2024_code_snapshot/DataPreprocessing/step8-TimeCheck/step5-NAandSSD/step4-convert.0308/aa_example.C",
+      "../gamma2024_code_snapshot/DataPreprocessing/step8-TimeCheck/step5-T0andNA/step4-convert.0308/aa_example.C",
+      "../gamma2024_code_snapshot/DataPreprocessing/step8-TimeCheck/step5-T0LS/step4-convert.0308/aa_example.C",
+      "../gamma2024_code_snapshot/DataPreprocessing/step8-TimeCheck/step5-onlygamma/step7-DeltaYrelated/h2_check.C",
+      "../gamma2024_code_snapshot/DataPreprocessing/step8-TimeCheck/step5-onlygamma/step7-DeltaYrelated/Drawhistos.C"
+    ],
+    "python_entries": [
+      "plotting/plot_trigger_energy_time_correlations.py"
+    ],
+    "root_entries": [
+      "plotting/root/draw_trigger_energy_time_correlations.C"
+    ],
+    "status": "checked"
+  },
+  "public_boundary": {
+    "contains_private_paths": false,
+    "internal_path_reference": "../../../DATA_PATHS.md",
+    "notes": "Experimental data and generated binary outputs are not distributed."
+  },
+  "schema_version": 1,
+  "stable_id": "cshine-trigger-energy-time-correlations",
+  "thesis": {
+    "adopted_artifacts": [
+      {
+        "path": "01_chapter_assets/03_cshine_experiment/figures/03_final/cshine_gamma_trigger_energy_time_correlations.pdf",
+        "role": "thesis final figure",
+        "sha256": "f2f4499a759d47666270409e3982dcaa0f15d35095e00c186c016e05147cd210",
+        "size_bytes": 482186
+      }
+    ],
+    "label": "fig:cshine-trigger-energy-time-correlations",
+    "section": "Sec. 3.3.4",
+    "status": "used"
+  },
+  "title": "Reconstructed energy versus core time under five trigger conditions",
+  "updated_utc": "2026-08-11T04:11:26Z",
+  "validation": {
+    "checks": [
+      "analysis-note Fig. 15 was inspected and confirmed to contain five panels with an empty lower-right pad",
+      "the five upstream trigger branches, monitor indices, valid-TDC conditions, common reconstruction code, ROOT object name, and historical drawing block were frozen by source inspection",
+      "portable Python syntax, command-entry, and synthetic-layout checks passed locally",
+      "the focused ROOT reference passed a compiler syntax check against the local ROOT headers",
+      "the authorized-server run validated all five object schemas, counts, flow bins, input checksums, and output checksums",
+      "the downloaded PDF and PNG checksums match the output checksums stored by the server run",
+      "the author approved the candidate and the PDF checksum was preserved in the thesis-final copy",
+      "source review during M10B found that the historical Fig. 15 veto branch is inverted relative to the author-reviewed main analysis; both definitions are now named and stored separately"
+    ],
+    "notes": "The historical h2_check.C and Drawhistos.C files are byte-identical across the five branches. The five aa_example.C files differ in the trigger-monitor index used upstream. Static M10B review found that the historical h2_check.C requires veto silence for central cores and does not require it for side cores, opposite to the author-reviewed main-analysis definition. The adopted figure remains an exact record of the historical implementation; M10B also writes a separately named reviewed object family for future comparisons. The revised two-row, three-column figure was generated on the authorized server with Python 3.6.9, ROOT 6.28/04, NumPy 1.19.5, and Matplotlib 3.3.4. Panel entries are 15140779, 4658621, 50384, 193610, and 3925; displayed counts are 15096166, 4511595, 48813, 186990, and 3721. The author-approved PDF was copied unchanged into thesis Sec. 3.3.4.",
+    "records": [
+      {
+        "result": "five-panel source composition and trigger-branch mapping frozen",
+        "type": "static-source-inspection"
+      },
+      {
+        "result": "passed Python syntax compilation and --help command entry",
+        "type": "syntax"
+      },
+      {
+        "result": "passed C++ syntax-only compilation against ROOT headers",
+        "type": "root-reference-syntax"
+      },
+      {
+        "result": "two-row, three-column layout rendered with five upper-left trigger labels, independent color bars, common axis titles, no label overlap, and an empty lower-right pad",
+        "type": "synthetic-layout"
+      },
+      {
+        "result": "five authorized ROOT objects passed the frozen 100 x 200 schema check; entries, displayed counts, flow summaries, input checksums, software versions, and output checksums were recorded",
+        "type": "real-data-object-validation"
+      },
+      {
+        "result": "author approved the two-row, three-column output and the PDF checksum was preserved in the thesis-final copy",
+        "type": "author-layout-review"
+      }
+    ],
+    "status": "real_data_checked"
+  }
+}

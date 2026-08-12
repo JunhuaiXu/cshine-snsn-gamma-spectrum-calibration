@@ -1,0 +1,130 @@
+{
+  "author_decision": {
+    "date": "2026-08-09",
+    "notes": "The author confirmed the all-15, no-veto definition and adopted the numerically checked horizontal redraw in thesis Sec. 3.3.5.",
+    "status": "confirmed"
+  },
+  "candidate": {
+    "artifacts": [
+      {
+        "path": "results/candidates/all15_noveto/reconstruction_multiplicity/cshine_gamma_cluster_size_and_core_multiplicity_horizontal.pdf",
+        "role": "pdf",
+        "sha256": "25ed70668ebf0850cfa3e654640a839407e614a3ad0e7e76da0c8b16b47f7fe5",
+        "size_bytes": 618774
+      }
+    ],
+    "status": "generated"
+  },
+  "created_utc": "2026-08-11T00:00:00Z",
+  "figure_class": "reproducible_redraw",
+  "historical": {
+    "historical_outputs": [],
+    "input_objects": [
+      "historical h2_check.root:ALL_h2_TotalE_LocalMulti",
+      "historical h2_check.root:ALL_h1_EventMulti",
+      "historical Drawhistos.C fixed values 6731 and 19"
+    ],
+    "publication_or_note_figure": "Analysis-note Fig. 8",
+    "source_files": [
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/h2_check.C",
+        "sha256": "d2870f286774c24f878b9eccdb7e9c2da1f3beecc1379a29aab91f321286096e"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/Drawhistos.C",
+        "sha256": "9302e43a298451a55d7f5964c3909349a7d9573c3d694bf79ded27cc2d54444e"
+      }
+    ],
+    "status": "source_frozen"
+  },
+  "physics_contract": {
+    "binning": [
+      "cluster-size panel: 100 x 9 bins over E_tot=0--200 MeV and cluster size 0.5--9.5",
+      "multiplicity panel: nine integer bins for N_core=1--9"
+    ],
+    "display_policy": [
+      "horizontal two-panel layout",
+      "logarithmic count scale for the two-dimensional panel and logarithmic vertical scale for the multiplicity panel",
+      "panel labels at upper left"
+    ],
+    "fit_or_transform": "none",
+    "inputs": [
+      "M10A diagnostics ROOT file: all15_cluster_size_vs_total_energy",
+      "M10A diagnostics ROOT file: all15_core_multiplicity",
+      "M10A diagnostics ROOT file: all15_high_core_multiplicity"
+    ],
+    "normalization": "none",
+    "sample": "The reviewed 60-group beam-on sample. Candidate multiplicities are evaluated independently within each total trigger.",
+    "selections": [
+      "all 15 CsI(Tl) units may be reconstructed centres",
+      "no plastic-veto condition is applied",
+      "the high-energy distribution counts candidates with E_tot > 35 MeV within each trigger"
+    ],
+    "status": "frozen",
+    "variables": [
+      "E_tot: reconstructed candidate energy",
+      "cluster size: number of crystals joined to the candidate",
+      "N_core: reconstructed candidate count in one total trigger"
+    ]
+  },
+  "portable": {
+    "command": "python3 plotting/plot_reconstruction_multiplicity.py --analysis-root /path/to/analysis --input-root results/data_preprocessing/m10/RUN/beam-on/h2_check.root --output-dir results/candidates/all15_noveto",
+    "minimum_python": "3.6",
+    "preserved_root_sources": [
+      "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/h2_check.C",
+      "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/Drawhistos.C"
+    ],
+    "python_entries": [
+      "plotting/plot_reconstruction_multiplicity.py"
+    ],
+    "root_entries": [
+      "analysis/data_preprocessing/apps/build_chapter3_diagnostics.cxx",
+      "analysis/data_preprocessing/validation/diagnose_core_subset_counts.cxx"
+    ],
+    "status": "checked"
+  },
+  "public_boundary": {
+    "contains_private_paths": false,
+    "internal_path_reference": "../../../DATA_PATHS.md",
+    "notes": "Experimental data and generated ROOT files are not distributed. The exact server data path remains in the private path register."
+  },
+  "schema_version": 1,
+  "stable_id": "reconstruction-multiplicity",
+  "thesis": {
+    "adopted_artifacts": [
+      {
+        "path": "thesis-assets/03_cshine_experiment/cshine_gamma_reconstruction_multiplicity.pdf",
+        "role": "pdf",
+        "sha256": "25ed70668ebf0850cfa3e654640a839407e614a3ad0e7e76da0c8b16b47f7fe5",
+        "size_bytes": 618774
+      }
+    ],
+    "label": "fig:cshine-gamma-reconstruction-multiplicity",
+    "section": "Sec. 3.3.5",
+    "status": "used"
+  },
+  "title": "Cluster size and reconstructed-core multiplicity",
+  "updated_utc": "2026-08-11T00:00:00Z",
+  "validation": {
+    "checks": [
+      "The three plotted ROOT objects were produced in one event loop from the same reviewed 60-group sample.",
+      "The all-core multiplicity bins are 22479729, 635143, 7882, 61, 1 and zeros thereafter.",
+      "The E_tot > 35 MeV multiplicity bins are 7218, 21 and zeros thereafter.",
+      "The adopted thesis PDF has the same checksum as the author-confirmed server output."
+    ],
+    "notes": "The historical Drawhistos.C constants 6731 and 19 could not be recovered from the retained ROOT objects. They remain a provenance question and are not used by the adopted figure.",
+    "records": [
+      {
+        "input_sha256": "0a182512a3da37fabb1e5ff10813a4fbf85775ac879cfe0c82604380c50aaa1f",
+        "result": "real-data object production, selection, counts, and plotting passed",
+        "software": "Python 3.6.9; ROOT 6.28/04; NumPy 1.17.4; Matplotlib 3.3.1",
+        "type": "real-data-object-check"
+      },
+      {
+        "result": "M10A synthetic ROOT test passed in the server ROOT 6.28/04 environment",
+        "type": "portable-producer-check"
+      }
+    ],
+    "status": "real_data_checked"
+  }
+}

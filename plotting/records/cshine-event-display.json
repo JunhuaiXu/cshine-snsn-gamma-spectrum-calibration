@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "stable_id": "cshine-event-display",
+  "title": "Representative gamma-ray and cosmic-muon event displays",
+  "figure_class": "reproducible_redraw",
+  "created_utc": "2026-08-11T06:13:56Z",
+  "updated_utc": "2026-08-11T16:15:00Z",
+  "historical": {
+    "publication_or_note_figure": "Analysis-note Fig. 17; identical PRC supplementary EventDisplay.pdf",
+    "source_files": [
+      {
+        "path": "../gamma2024_code_snapshot/EventDisplay/EventALL/h2_check.C",
+        "role": "gamma-ray candidate search and reconstruction",
+        "sha256": "861e6281e249ee660aba904b3594b7d454c40a2af68b4c61e7f93c79d5c7c9d3"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/EventDisplay/EventDisplay.C",
+        "role": "cosmic-muon candidate search and display",
+        "sha256": "60322e4e8aa2779b37b934ddd8b5fc746f552489cc4e4b83891256eda49e30d5"
+      }
+    ],
+    "input_objects": [
+      {
+        "path": "EventDisplay/EventALL/lego_0.root",
+        "role": "historical gamma-ray panel"
+      },
+      {
+        "path": "EventDisplay/lego_5.root",
+        "role": "historical cosmic-muon panel"
+      }
+    ],
+    "historical_outputs": ["EventDisplay/EventALL/lego_0.root", "EventDisplay/lego_5.root"],
+    "status": "source_frozen"
+  },
+  "physics_contract": {
+    "sample": "PRC/analysis-note representative events",
+    "variables": [
+      "deposited energy in each of the 4 x 4 CsI(Tl) units"
+    ],
+    "binning": [
+      "4 x 4 crystal-grid bins"
+    ],
+    "normalization": "none",
+    "display_policy": [
+      "ROOT LEGO2",
+      "horizontal two-panel layout",
+      "row and column indices 1--4",
+      "common displayed energy range 0--100 MeV"
+    ],
+    "inputs": [
+      "fixed 60-file March 4--10 step4-convert.0308.PreRun sample",
+      "step4-convert.0308/a20240306_SnSn_GOAL_ALLCOIN.007.root"
+    ],
+    "selections": [
+      "gamma: 16th accepted candidate; zero-based source entry 1678036; core CsI05; jiugong_recon; central/side core set; side-core veto; 110--200 MeV reconstructed energy; at most one accepted candidate per source entry",
+      "cosmic: second accepted event; zero-based source entry 1224015; count_veto == 0; at least five finite corrected-time crystals; raw displayed energy at least 100 MeV"
+    ],
+    "status": "frozen"
+  },
+  "portable": {
+    "status": "implemented",
+    "preserved_root_sources": [
+      "../gamma2024_code_snapshot/EventDisplay/EventALL/h2_check.C",
+      "../gamma2024_code_snapshot/EventDisplay/EventDisplay.C"
+    ],
+    "root_entries": [
+      "analysis/data_preprocessing/validation/build_event_display_records.cxx",
+      "analysis/data_preprocessing/validation/validate_event_display_records.cxx",
+      "plotting/root/draw_event_display_horizontal.C"
+    ],
+    "python_entries": [],
+    "command": "run remote job event-display-reproduction",
+    "minimum_python": null
+  },
+  "validation": {
+    "status": "numerically_validated",
+    "checks": [
+      "gamma histogram: zero mismatched bins and zero maximum absolute difference",
+      "cosmic histogram: zero mismatched bins and zero maximum absolute difference",
+      "adopted PDF checksum matches downloaded ROOT output"
+    ],
+    "records": [
+      {
+        "path": "results/remote_runs/event-display-root-layout/20260811T161500Z/event_display/cshine_gamma_event_display_horizontal.pdf",
+        "sha256": "0691863f0a87f4e6e55dcf348d20930eab5a6682c607f28931e7f2736a287799"
+      }
+    ],
+    "notes": "The validated frozen ROOT record has SHA-256 4d325a8b8c8ddb9ae0d39979141e2f1eb2352226d8d9694a7828ab5eb47bd5ae. PRR uses a separate representative-event selection and is not covered."
+  },
+  "candidate": {
+    "status": "generated",
+    "artifacts": [
+      {
+        "path": "results/remote_runs/event-display-root-layout/20260811T161500Z/event_display/cshine_gamma_event_display_horizontal.pdf",
+        "role": "author-approved ROOT PDF",
+        "sha256": "0691863f0a87f4e6e55dcf348d20930eab5a6682c607f28931e7f2736a287799",
+        "size_bytes": 21702
+      }
+    ]
+  },
+  "author_decision": {
+    "date": "2026-08-11",
+    "status": "confirmed",
+    "notes": "The author selected the ROOT LEGO2 horizontal rendering after comparing alternative presentations."
+  },
+  "thesis": {
+    "status": "used",
+    "section": "Sec. 3.4.1",
+    "label": "fig:cshine-gamma-event-display",
+    "adopted_artifacts": [
+      {
+        "path": "thesis-assets/03_cshine_experiment/cshine_gamma_event_display.pdf",
+        "role": "pdf",
+        "recorded_utc": "2026-08-11T16:15:00Z",
+        "sha256": "0691863f0a87f4e6e55dcf348d20930eab5a6682c607f28931e7f2736a287799",
+        "size_bytes": 21702
+      }
+    ]
+  },
+  "public_boundary": {
+    "contains_private_paths": false,
+    "internal_path_reference": "../../../DATA_PATHS.md",
+    "notes": "Exact collaborator paths remain in the internal data-path document; public records keep only portable relative paths and the frozen selection contract."
+  }
+}

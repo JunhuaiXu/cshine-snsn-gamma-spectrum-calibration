@@ -1,0 +1,121 @@
+{
+  "author_decision": {
+    "date": "2026-08-03",
+    "notes": "The author approved direct use of the analysis-note PDF in thesis Sec. 3.3.5. The portable redraw has not replaced that adopted artifact.",
+    "status": "confirmed"
+  },
+  "candidate": {
+    "artifacts": [
+      {
+        "path": "../../../01_chapter_assets/05_src_measurement/references/02_analysis_notes/SnSn_gamma_long_paper/figures/merged_eDep_CsI_matplotlib.pdf",
+        "role": "author-approved historical source PDF",
+        "sha256": "d0ce788da5168a657eca8cc0de3058a02c903ed0c08542a86162bc63060b7292",
+        "size_bytes": 419905
+      }
+    ],
+    "status": "generated"
+  },
+  "created_utc": "2026-08-11T00:00:00Z",
+  "figure_class": "direct_use",
+  "historical": {
+    "historical_outputs": [
+      {
+        "path": "../../../01_chapter_assets/05_src_measurement/references/02_analysis_notes/SnSn_gamma_long_paper/figures/merged_eDep_CsI_matplotlib.pdf",
+        "sha256": "d0ce788da5168a657eca8cc0de3058a02c903ed0c08542a86162bc63060b7292"
+      }
+    ],
+    "input_objects": [
+      "h_eDep_0--14",
+      "h_recon_5,6,9,10",
+      "h_recon_veto_4,7,8,11,13,14"
+    ],
+    "publication_or_note_figure": "Analysis-note and PRC-supplement per-crystal spectra before and after reconstruction",
+    "source_files": [
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step4-convert.0308.PreRun/aa_example.C",
+        "sha256": "177ff86445fcb573472bb9a7bfaf8d80d6a399a0a930693bc19e62d1a5905b6b"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step4-convert.0308.PreRun/MoreFigs/draw_merge_h_eDep.C",
+        "sha256": "ae929e34d7efe182a85b3e5a53c0d08af4cc3aa78b8e4ede60c1565f4475776a"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step4-convert.0308.PreRun/MoreFigs/draw_merge_h_recon.ipynb",
+        "sha256": "162d32782dc66d37740d0c64b61931552c25a81ff48a8261dcef92e9709f0ed7"
+      }
+    ],
+    "status": "source_frozen"
+  },
+  "physics_contract": {
+    "binning": [
+      "Individual spectra: 1000 bins over 0--100 MeV, displayed after factor-ten rebinning",
+      "Reconstructed spectra: 1000 bins over 0--200 MeV, displayed after factor-five rebinning"
+    ],
+    "display_policy": [
+      "Historical 4 x 4 detector-layout panel order with one empty panel",
+      "Logarithmic count axes over 0--100 MeV",
+      "Blue individual spectra and red reconstructed spectra"
+    ],
+    "fit_or_transform": "No fit or spectrum transformation is performed at the figure layer; M8 produces the per-run histograms and M9 adds them over the explicit figure sample.",
+    "inputs": [
+      "The exact 59 March 5--10 run groups in reconstruction_spectra_figure_run_groups.tsv",
+      "M8 per-run ROOT outputs containing the historical per-crystal histogram families"
+    ],
+    "normalization": "none",
+    "sample": "The historical figure sample contains 59 beam-on run groups from March 5 through March 10. It is distinct from the reviewed 60-group central analysis sample, which additionally contains one March 4 run group.",
+    "selections": [
+      "All 15 h_eDep spectra require a valid corrected time in the historical producer",
+      "Central crystals 5, 6, 9, and 10 use h_recon",
+      "Edge crystals 4, 7, 8, 11, 13, and 14 use h_recon_veto",
+      "Corner and excluded crystals retain only the individual detector spectrum"
+    ],
+    "status": "frozen",
+    "variables": [
+      "Individual-crystal deposited energy",
+      "Reconstructed cluster energy assigned to the corresponding core crystal",
+      "Histogram counts"
+    ]
+  },
+  "portable": {
+    "command": "Run M9 with analysis/data_preprocessing/config/reconstruction_spectra_figure_run_groups.tsv as the beam-on manifest, then run python3 plotting/plot_reconstruction_spectra.py --per-crystal-root /path/to/beam-on/all_notree.root --output-dir results/figures/reconstruction_spectra.",
+    "minimum_python": "3.6",
+    "preserved_root_sources": [
+      "../gamma2024_code_snapshot/DataPreprocessing/step4-convert.0308.PreRun/aa_example.C",
+      "../gamma2024_code_snapshot/DataPreprocessing/step4-convert.0308.PreRun/MoreFigs/draw_merge_h_eDep.C",
+      "../gamma2024_code_snapshot/DataPreprocessing/step4-convert.0308.PreRun/MoreFigs/draw_merge_h_recon.ipynb"
+    ],
+    "python_entries": [
+      "plotting/plot_reconstruction_spectra.py"
+    ],
+    "root_entries": [],
+    "status": "implemented"
+  },
+  "public_boundary": {
+    "contains_private_paths": false,
+    "internal_path_reference": "../../../DATA_PATHS.md",
+    "notes": "Experimental data, M8/M9 ROOT outputs, and generated binary figures are not distributed."
+  },
+  "schema_version": 1,
+  "stable_id": "cshine-spectra-reconstruction",
+  "thesis": {
+    "adopted_artifacts": [
+      {
+        "path": "../../../01_chapter_assets/03_cshine_experiment/figures/03_final/cshine_gamma_spectra_before_after_reconstruction.pdf",
+        "role": "adopted unchanged historical PDF",
+        "sha256": "d0ce788da5168a657eca8cc0de3058a02c903ed0c08542a86162bc63060b7292",
+        "size_bytes": 419905
+      }
+    ],
+    "label": "fig:cshine-gamma-spectra-reconstruction",
+    "section": "Sec. 3.3.5",
+    "status": "final"
+  },
+  "title": "Per-crystal spectra before and after shower reconstruction",
+  "updated_utc": "2026-08-11T00:00:00Z",
+  "validation": {
+    "checks": [],
+    "notes": "The adopted PDF is the unchanged historical analysis-note artifact and its source/adopted checksums agree. The new portable M8/M9 plus Python path has passed static and manifest checks but has not been rerun on the full 59-group experimental sample.",
+    "records": [],
+    "status": "not_run"
+  }
+}

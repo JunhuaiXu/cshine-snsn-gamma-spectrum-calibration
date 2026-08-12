@@ -1,0 +1,153 @@
+{
+  "author_decision": {
+    "date": "2026-08-11",
+    "notes": "The author explicitly requested that Fig. 3.18 be redrawn and integrated after validation.",
+    "status": "confirmed"
+  },
+  "candidate": {
+    "artifacts": [
+      {
+        "path": "results/remote_runs/fast-coincidence-background-subtraction/20260811T165711Z/fast_coincidence_background_subtraction/cshine_gamma_fast_coincidence_background_subtraction_horizontal.pdf",
+        "role": "numerically validated horizontal Python redraw",
+        "sha256": "7f81b0c08bbf7b280784d8a3bc8de6b4e46491bd865b63f0c461357a504505df",
+        "size_bytes": 616413
+      },
+      {
+        "path": "results/remote_runs/fast-coincidence-background-subtraction/20260811T165711Z/fast_coincidence_background_subtraction/cshine_gamma_fast_coincidence_background_subtraction_root_reference.pdf",
+        "role": "focused ROOT reference",
+        "sha256": "ef12d7d630c9a6ff752b5b71d06d466b3b0ed364fdcd2e594f26b4368b971592",
+        "size_bytes": 20959
+      }
+    ],
+    "status": "generated"
+  },
+  "created_utc": "2026-08-11T16:56:53Z",
+  "figure_class": "reproducible_redraw",
+  "historical": {
+    "historical_outputs": [],
+    "input_objects": [],
+    "publication_or_note_figure": "PRC FastWinSpec.pdf; identical analysis-note figure",
+    "source_files": [
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step10-DifferentTriggerMode/RemoveSSDM2/step4-convert.0308.data/EnergySpecGen.C",
+        "role": "rebinning and direct-subtraction producer",
+        "sha256": "ccc2406c46bd9d0563654ad248617b221801158d36a0397a83eef693c44f0aa8"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step10-DifferentTriggerMode/RemoveSSDM2/step4-convert.0308.data/aa_example.C",
+        "role": "fast-coincidence-window event producer",
+        "sha256": "9a3c130643530ac9c9cba132aaa84244579a64d4f356e6f80277a4d8719423a8"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step10-DifferentTriggerMode/RemoveSSDM2/step4-convert.0308.bkg/aa_example.C",
+        "role": "equal-width random-window event producer",
+        "sha256": "1e75cb90eccc75143f4cd0cd9c52640ef818df88cb32a22b52feb6d5c749882a"
+      }
+    ],
+    "input_objects": [
+      {
+        "path": "DataPreprocessing/step10-DifferentTriggerMode/RemoveSSDM2/step4-convert.0308.data/all_recon.root:h_total_E_M1",
+        "role": "fast-coincidence reconstructed-energy spectrum"
+      },
+      {
+        "path": "DataPreprocessing/step10-DifferentTriggerMode/RemoveSSDM2/step4-convert.0308.bkg/all_recon.root:h_total_E_M1",
+        "role": "equal-width random-window reconstructed-energy spectrum"
+      },
+      {
+        "path": "DataPreprocessing/step10-DifferentTriggerMode/RemoveSSDM2/step4-convert.0308.data/spectrum_110.root:histDiff",
+        "role": "historical fast-window-minus-random-window spectrum"
+      }
+    ],
+    "historical_outputs": [
+      {
+        "path": "PRC source/FastWinSpec.pdf",
+        "sha256": "4191be818f377d0bf130757249b56985a3a40d6d9f7439aee4dd6e43b2e3a624"
+      }
+    ],
+    "status": "source_frozen"
+  },
+  "physics_contract": {
+    "binning": [
+      "source histograms: 1000 bins over 0--200 MeV",
+      "rebin factor 5: 200 bins of width 1 MeV"
+    ],
+    "display_policy": [
+      "one-row, two-column layout",
+      "logarithmic count axes",
+      "panel (a): fast-coincidence and random-window spectra over 0--200 MeV",
+      "panel (b): direct difference over 0--100 MeV with statistical uncertainties"
+    ],
+    "fit_or_transform": "histDiff = fast-coincidence spectrum - random-window spectrum",
+    "inputs": [
+      "step4-convert.0308.data/all_recon.root:h_total_E_M1",
+      "step4-convert.0308.bkg/all_recon.root:h_total_E_M1",
+      "step4-convert.0308.data/spectrum_110.root:histDiff for validation"
+    ],
+    "normalization": "both time windows are 300 ns wide, so the random-window spectrum is subtracted with scale one",
+    "sample": "2024-03-08 beam-on data after rejection of the SSD-M2 trigger-monitor peak",
+    "selections": [
+      "reject 835 < SSD-M2 trigger-monitor TDC channel < 850",
+      "fast-coincidence core time window: -350 to -50 ns",
+      "random-coincidence core time window: 50 to 350 ns",
+      "four central cores enter without veto; six side cores require zero veto count"
+    ],
+    "status": "frozen",
+    "variables": [
+      "reconstructed total gamma-ray energy E_tot"
+    ]
+  },
+  "portable": {
+    "command": "run remote job fast-coincidence-background-subtraction",
+    "minimum_python": "3.6",
+    "preserved_root_sources": [
+      "../gamma2024_code_snapshot/DataPreprocessing/step10-DifferentTriggerMode/RemoveSSDM2/step4-convert.0308.data/EnergySpecGen.C",
+      "../gamma2024_code_snapshot/DataPreprocessing/step10-DifferentTriggerMode/RemoveSSDM2/step4-convert.0308.data/aa_example.C",
+      "../gamma2024_code_snapshot/DataPreprocessing/step10-DifferentTriggerMode/RemoveSSDM2/step4-convert.0308.bkg/aa_example.C"
+    ],
+    "python_entries": [
+      "plotting/plot_fast_coincidence_background_subtraction.py"
+    ],
+    "root_entries": [
+      "plotting/root/draw_fast_coincidence_background_subtraction.C"
+    ],
+    "status": "implemented"
+  },
+  "public_boundary": {
+    "contains_private_paths": false,
+    "internal_path_reference": "../../../DATA_PATHS.md",
+    "notes": "Experimental data and generated binary outputs are not distributed."
+  },
+  "schema_version": 1,
+  "stable_id": "cshine-fast-background-subtraction-figure",
+  "thesis": {
+    "adopted_artifacts": [
+      {
+        "path": "thesis-assets/03_cshine_experiment/cshine_gamma_fast_coincidence_background_subtraction.pdf",
+        "recorded_utc": "2026-08-11T17:20:00Z",
+        "role": "author-requested, numerically validated horizontal redraw",
+        "sha256": "7f81b0c08bbf7b280784d8a3bc8de6b4e46491bd865b63f0c461357a504505df",
+        "size_bytes": 616413
+      }
+    ],
+    "label": "fig:cshine-gamma-fast-coincidence-background-subtraction",
+    "section": "Sec. 3.5.3",
+    "status": "used"
+  },
+  "title": "Fast-coincidence random-window background subtraction",
+  "updated_utc": "2026-08-11T16:56:53Z",
+  "validation": {
+    "checks": [
+      "equal-width random-window background scale: 1",
+      "zero mismatched contents in all regular and flow bins relative to step4-convert.0308.data/spectrum_110.root:histDiff",
+      "zero mismatched errors in all regular and flow bins relative to step4-convert.0308.data/spectrum_110.root:histDiff"
+    ],
+    "notes": "The reconstructed spectrum and statistical uncertainties agree exactly with the historical ROOT object at tolerance 1e-9.",
+    "records": [
+      {
+        "path": "results/remote_runs/fast-coincidence-background-subtraction/20260811T165711Z/fast_coincidence_background_subtraction/cshine_gamma_fast_coincidence_background_subtraction_horizontal.json",
+        "sha256": "54b26420c6295ce5fe015c48ebd5ecb420eed8f88fc1d27b7757b7e41858b0f5"
+      }
+    ],
+    "status": "numerically_validated"
+  }
+}

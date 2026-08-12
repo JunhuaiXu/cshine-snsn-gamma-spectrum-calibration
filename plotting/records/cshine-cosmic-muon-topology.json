@@ -1,0 +1,210 @@
+{
+  "author_decision": {
+    "date": "2026-08-10",
+    "notes": "The author confirmed both the Fig. 10 central/side-core and plastic-veto logic and the resulting candidate for direct use in thesis Sec. 3.5.1.",
+    "status": "confirmed"
+  },
+  "candidate": {
+    "artifacts": [
+      {
+        "path": "results/remote_runs/cosmic-muon-topology/20260811T051340Z/cosmic_muon_topology/cshine_gamma_cosmic_muon_topology_horizontal.pdf",
+        "recorded_utc": "2026-08-11T05:13:40Z",
+        "role": "pdf",
+        "sha256": "8364dee60c284600147d1bdac0c05275cb5c32efb089a04af36fdc90e0741361",
+        "size_bytes": 631977
+      },
+      {
+        "path": "results/remote_runs/cosmic-muon-topology/20260811T051340Z/cosmic_muon_topology/cshine_gamma_cosmic_muon_topology_horizontal.png",
+        "recorded_utc": "2026-08-11T05:13:40Z",
+        "role": "png",
+        "sha256": "44ddfb372f2fc88ecff5aeaf071563fe0c255705b80802464b908921d296aa48",
+        "size_bytes": 143986
+      },
+      {
+        "path": "results/remote_runs/cosmic-muon-topology/20260811T051340Z/cosmic_muon_topology/cshine_gamma_cosmic_muon_topology_horizontal.json",
+        "recorded_utc": "2026-08-11T05:13:40Z",
+        "role": "metadata",
+        "sha256": "eafa2e1457596d1f480e697a515703072fe34d77a8fc95d941f0f84d815fb2f4",
+        "size_bytes": 2950
+      }
+    ],
+    "status": "generated"
+  },
+  "created_utc": "2026-08-11T04:56:00Z",
+  "figure_class": "reproducible_redraw",
+  "historical": {
+    "historical_outputs": [
+      {
+        "path": "analysis-note/figures/BKGFeatures.pdf",
+        "role": "manually assembled reference figure",
+        "sha256": "6db351092e007163fd5470d67ec4070ab164d39e9cc556310f1a7025a3687e36",
+        "size_bytes": 227832
+      }
+    ],
+    "input_objects": [
+      "h2_check_BKG.root:ALL_h2_ax_ay_100_inf",
+      "h2_check_BKG.root:ALL_h2_TotalE_CenterE"
+    ],
+    "publication_or_note_figure": "Analysis-note Fig. 18; identical PRC supplementary BKGFeatures figure",
+    "source_files": [
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/h2_check_BKG.C",
+        "sha256": "6cd1dbee9b64c1f92e1faa19a9176c007bb72ffc0bd88ea242f18af9daad8409"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/get_ax_ay.hh",
+        "sha256": "2f38bde0d3ff6b61ac340c53e96573e117abea2b3354421d9f654846aef625ce"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step11-otherFigsLongPaper/Fig2-deltaxdeltayBKG/h2_check.C",
+        "sha256": "84e2ee9a8ec68a47b08c3fed7588aee3a758dea7a45272e31a75afd0402c5a10"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step11-otherFigsLongPaper/Fig2-deltaxdeltayBKG/Drawhistos.C",
+        "sha256": "225ed3d1ca35efa406f8ac88831bcb0b9ca5378d8c0369a377e60401619f33d0"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step11-otherFigsLongPaper/Fig2-deltaxdeltayBKG/get_ax_ay.hh",
+        "sha256": "233faeb9b4cc0ad1c623c4476535ee94bfd83685d9774e0475da92695060c67e"
+      }
+    ],
+    "status": "source_frozen"
+  },
+  "physics_contract": {
+    "binning": [
+      "panel (a): 70 x 70 bins over delta_x=0--7 cm and delta_y=0--7 cm",
+      "panel (b): 50 x 80 bins over E_tot=5--200 MeV and E_core=0--80 MeV"
+    ],
+    "display_policy": [
+      "horizontal two-panel layout in analysis-note panel order",
+      "complete independent axes and an independent logarithmic count color scale in each panel",
+      "panel labels at upper left",
+      "zero-count bins masked; positive in-range counts unchanged",
+      "underflow and overflow recorded but not drawn"
+    ],
+    "fit_or_transform": "the frozen producer computes energy-weighted mean absolute spatial spreads and fills the two ROOT objects; the output layer applies no rebinning, smoothing, fit, or further transform",
+    "inputs": [
+      "DataPreprocessing/step7-DeltaYrelated/h2_check_BKG.root",
+      "ALL_h2_ax_ay_100_inf",
+      "ALL_h2_TotalE_CenterE"
+    ],
+    "normalization": "none",
+    "sample": "Beam-off reconstructed candidates from six March 4, 5, 8, and 11 background files. The merged histograms contain central cores 5, 6, 9, 10 and side cores 4, 7, 8, 11, 13, 14.",
+    "selections": [
+      "panel (a) requires E_tot > 100 MeV; panel (b) has no additional energy selection",
+      "central candidates have no plastic-veto requirement; side candidates require count_veto == 0, meaning that all three plastic-veto detectors have no signal",
+      "the merged ALL objects include only the four central and six side core groups"
+    ],
+    "status": "frozen",
+    "variables": [
+      "delta_x and delta_y: energy-weighted mean absolute spatial spreads multiplied by the 7 cm crystal pitch",
+      "E_tot: reconstructed cluster energy [MeV]",
+      "E_core: calibrated energy of the reconstructed core crystal [MeV]"
+    ]
+  },
+  "portable": {
+    "command": "python3 plotting/plot_cosmic_muon_topology.py --analysis-root /path/to/gamma2024 --output-dir results/figures",
+    "minimum_python": "3.6",
+    "preserved_root_sources": [
+      "../gamma2024_code_snapshot/DataPreprocessing/step11-otherFigsLongPaper/Fig2-deltaxdeltayBKG/h2_check.C",
+      "../gamma2024_code_snapshot/DataPreprocessing/step11-otherFigsLongPaper/Fig2-deltaxdeltayBKG/Drawhistos.C",
+      "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/h2_check_BKG.C",
+      "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/get_ax_ay.hh"
+    ],
+    "python_entries": [
+      "plotting/plot_cosmic_muon_topology.py"
+    ],
+    "root_entries": [
+      "plotting/root/draw_cosmic_muon_topology.C"
+    ],
+    "status": "checked"
+  },
+  "public_boundary": {
+    "contains_private_paths": false,
+    "internal_path_reference": "../../../DATA_PATHS.md",
+    "notes": "Experimental data and generated binary outputs are not distributed. The dedicated long-paper output is retained as historical provenance; the thesis candidate uses the later beam-off output because it applies the author-confirmed Fig. 10 core/veto definition."
+  },
+  "schema_version": 1,
+  "stable_id": "cshine-cosmic-muon-topology",
+  "thesis": {
+    "adopted_artifacts": [
+      {
+        "path": "thesis-assets/03_cshine_experiment/cshine_gamma_cosmic_muon_topology.pdf",
+        "recorded_utc": "2026-08-11T05:37:39Z",
+        "role": "pdf",
+        "sha256": "8364dee60c284600147d1bdac0c05275cb5c32efb089a04af36fdc90e0741361",
+        "size_bytes": 631977
+      }
+    ],
+    "label": "fig:cshine-gamma-cosmic-muon-topology",
+    "section": "Sec. 3.5.1",
+    "status": "used"
+  },
+  "title": "Beam-off spatial topology and core-energy sharing",
+  "updated_utc": "2026-08-11T05:37:39Z",
+  "validation": {
+    "checks": [
+      "analysis-note and PRC supplementary copies of BKGFeatures.pdf have identical SHA-256 values",
+      "the dedicated long-paper ROOT file and the later final-selection beam-off ROOT file were compared for existence, modification time, object schema, entries, and in-range counts",
+      "the two get_ax_ay.hh copies were compared; their numerical implementation is identical and only the relative jiugong_recon.h include path differs",
+      "the portable Python source compiles under the local interpreter and enforces the frozen object names and binning",
+      "the focused ROOT reference preserves the historical object-level drawing without rebinning or normalization"
+    ],
+    "notes": "The published composite is retained as provenance, but its dedicated producer reverses the final central/side veto logic. Following the author's decision, the thesis figure reads the later final-selection beam-off output without rebinning, normalization, smoothing, or fitting. The author-approved PDF is used in thesis Sec. 3.5.1.",
+    "records": [
+      {
+        "result": "source definitions, dedicated output version, and output-layer behavior frozen",
+        "type": "static-source-inspection"
+      },
+      {
+        "result": "dedicated long-paper file: 70 x 70 spatial object with 27,745 entries; 200 x 80 energy object with 2,115,335 entries",
+        "type": "remote-read-only-schema-check"
+      },
+      {
+        "result": "the later final-selection beam-off file has 21,911 spatial entries, a 50 x 80 energy object, and the same central/side veto logic as Fig. 10; selected for the thesis redraw by author decision",
+        "type": "author-confirmed-physics-selection"
+      },
+      {
+        "input_sha256": "e5755e4c27f1be43ba4437982a5f8f50862af7d39acf17a6ac46e889eb46abba",
+        "objects": {
+          "ALL_h2_TotalE_CenterE": {
+            "entries": 2115335,
+            "in_range_counts": 2106219,
+            "including_underflow_overflow": 2115335,
+            "outside_displayed_range": 9116
+          },
+          "ALL_h2_ax_ay_100_inf": {
+            "entries": 27745,
+            "in_range_counts": 27745,
+            "including_underflow_overflow": 27745,
+            "outside_displayed_range": 0
+          }
+        },
+        "result": "real-data ROOT-object, binning, count, and transfer-checksum checks passed",
+        "software": "Python 3.6.9; ROOT 6.28/04; NumPy 1.17.4; Matplotlib 3.3.1",
+        "type": "real-data-object-check"
+      },
+      {
+        "input_sha256": "5d800ae93559528d395b4e296135640281e26c48ea593d6db203f5f9abb22145",
+        "objects": {
+          "ALL_h2_TotalE_CenterE": {
+            "entries": 2087393,
+            "in_range_counts": 32056,
+            "including_underflow_overflow": 2087393,
+            "outside_displayed_range": 2055337
+          },
+          "ALL_h2_ax_ay_100_inf": {
+            "entries": 21911,
+            "in_range_counts": 21911,
+            "including_underflow_overflow": 21911,
+            "outside_displayed_range": 0
+          }
+        },
+        "result": "author-confirmed final-selection ROOT objects, binning, counts, and transfer checksums passed",
+        "software": "Python 3.6.9; ROOT 6.28/04; NumPy 1.17.4; Matplotlib 3.3.1",
+        "type": "real-data-object-check"
+      }
+    ],
+    "status": "real_data_checked"
+  }
+}

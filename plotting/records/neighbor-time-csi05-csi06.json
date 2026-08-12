@@ -1,0 +1,79 @@
+{
+  "author_decision": {
+    "date": "2026-08-08",
+    "notes": "The author approved the real-data horizontal redraw for thesis Sec. 3.3.2.",
+    "status": "confirmed"
+  },
+  "candidate": {
+    "artifacts": [
+      {
+        "path": "results/figures/neighbor_time_correlation/cshine_gamma_neighbor_time_correlation_csi05_csi06_horizontal.pdf",
+        "role": "pdf",
+        "sha256": "d8a831c68224678346cdc6da202606cda7f9dfd4e77c012b64a500ebc9b78ad0",
+        "size_bytes": 635384
+      }
+    ],
+    "status": "generated"
+  },
+  "created_utc": "2026-08-11T00:00:00Z",
+  "figure_class": "reproducible_redraw",
+  "historical": {
+    "historical_outputs": [],
+    "input_objects": ["h2_all", "h2_cut"],
+    "publication_or_note_figure": "Analysis-note Fig. 5",
+    "source_files": [
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step4-convert.0308.PreRun/draw_GammaTimeDiff.C",
+        "sha256": "6ad88f3440b6b79356f13701769d2d65eb48027f61fafcd050fc904cedcfd2c6"
+      }
+    ],
+    "status": "source_frozen"
+  },
+  "physics_contract": {
+    "binning": ["Both panels: 100 x 100 bins over -500 to 500 ns on both axes"],
+    "display_policy": ["horizontal two-panel layout", "independent logarithmic count scales and color bars", "panel labels at upper left"],
+    "fit_or_transform": "none",
+    "inputs": ["M7 neighbor_time_diagnostics.root:h2_all", "M7 neighbor_time_diagnostics.root:h2_cut"],
+    "normalization": "none",
+    "sample": "The fixed 60-file March 4--10 calibrated-event sample encoded by the central M6 run manifest.",
+    "selections": ["panel (a): no energy selection", "panel (b): GammaEnergy[5] + GammaEnergy[6] >= 30 MeV"],
+    "status": "frozen",
+    "variables": ["GammaTime[5]", "GammaTime[6]"]
+  },
+  "portable": {
+    "command": "python3 plotting/plot_neighbor_time_correlation.py --diagnostics-root results/data_preprocessing/m7/RUN/neighbor_time_diagnostics.root --output-dir results/figures",
+    "minimum_python": "3.6",
+    "preserved_root_sources": ["../gamma2024_code_snapshot/DataPreprocessing/step4-convert.0308.PreRun/draw_GammaTimeDiff.C"],
+    "python_entries": ["plotting/plot_neighbor_time_correlation.py"],
+    "root_entries": ["plotting/root/draw_neighbor_time_diagnostics.C"],
+    "status": "implemented"
+  },
+  "public_boundary": {
+    "contains_private_paths": false,
+    "internal_path_reference": "../../../DATA_PATHS.md",
+    "notes": "Experimental data and generated binary outputs are not distributed."
+  },
+  "schema_version": 1,
+  "stable_id": "neighbor-time-csi05-csi06",
+  "thesis": {
+    "adopted_artifacts": [
+      {
+        "path": "thesis-assets/03_cshine_experiment/cshine_gamma_neighbor_time_correlation_csi05_csi06.pdf",
+        "role": "pdf",
+        "sha256": "d8a831c68224678346cdc6da202606cda7f9dfd4e77c012b64a500ebc9b78ad0",
+        "size_bytes": 635384
+      }
+    ],
+    "label": "fig:cshine-gamma-neighbor-time-correlation",
+    "section": "Sec. 3.3.2",
+    "status": "used"
+  },
+  "title": "CsI05--CsI06 corrected-time correlation",
+  "updated_utc": "2026-08-11T00:00:00Z",
+  "validation": {
+    "checks": ["The exact 60-file input list, expressions, selection, binning, and ranges were traced to the frozen ROOT macro.", "The real-data redraw passed the selected-bin subset check and was approved by the author."],
+    "notes": "The M7 object producer adds synthetic ROOT validation; the adopted PDF predates that producer and was generated through the retained direct-tree provenance mode.",
+    "records": [{"result": "passed", "type": "real-data-direct-tree-check"}],
+    "status": "real_data_checked"
+  }
+}

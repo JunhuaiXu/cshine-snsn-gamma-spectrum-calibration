@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "job_id": "cosmic-muon-topology",
+  "description": "Generate the two-panel beam-off topology figure using the same central/side-core and plastic-veto selection as analysis-note Fig. 10.",
+  "uploads": [
+    {
+      "local": "plotting/plot_cosmic_muon_topology.py",
+      "remote_name": "plot_cosmic_muon_topology.py"
+    }
+  ],
+  "commands": [
+    [
+      "python3",
+      "-m",
+      "py_compile",
+      "{remote_code_dir}/plot_cosmic_muon_topology.py"
+    ],
+    [
+      "python3",
+      "{remote_code_dir}/plot_cosmic_muon_topology.py",
+      "--analysis-root",
+      "{analysis_root}",
+      "--output-dir",
+      "{run_output_dir}"
+    ]
+  ],
+  "outputs": [
+    "cosmic_muon_topology/cshine_gamma_cosmic_muon_topology_horizontal.pdf",
+    "cosmic_muon_topology/cshine_gamma_cosmic_muon_topology_horizontal.png",
+    "cosmic_muon_topology/cshine_gamma_cosmic_muon_topology_horizontal.json"
+  ]
+}

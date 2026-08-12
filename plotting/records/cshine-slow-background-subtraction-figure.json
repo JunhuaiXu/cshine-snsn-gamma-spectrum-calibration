@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "stable_id": "cshine-slow-background-subtraction-figure",
+  "title": "Beam-on and scaled beam-off spectra with background subtraction",
+  "figure_class": "reproducible_redraw",
+  "created_utc": "2026-08-11T16:03:13Z",
+  "updated_utc": "2026-08-11T17:00:00Z",
+  "historical": {
+    "publication_or_note_figure": "PRC SlowWinSpec.pdf; identical analysis-note figure",
+    "source_files": [
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step4-convert.0308/EnergySpecGen.C",
+        "role": "central beam-off normalization and subtraction producer",
+        "sha256": "6e8aa1986c3c67bb5aee5cd4341b1fdef70e868f76c35d057d511376fb66e980"
+      }
+    ],
+    "input_objects": [
+      {
+        "path": "DataPreprocessing/step4-convert.0308/all_recon.root:h_total_E_M1",
+        "role": "beam-on reconstructed-energy spectrum"
+      },
+      {
+        "path": "DataPreprocessing/step4-convert.0308/all_recon_BKG.root:h_total_E_M1",
+        "role": "beam-off reconstructed-energy spectrum"
+      },
+      {
+        "path": "DataPreprocessing/step4-convert.0308/spectrum_110.root:histDiff",
+        "role": "published central background-subtracted spectrum"
+      }
+    ],
+    "historical_outputs": [
+      {
+        "path": "PRC source/SlowWinSpec.pdf",
+        "sha256": "e652b3b40c3aa6e8a69384b558b755c7d0c06a42ae0f61797db35bd9c75d23e7"
+      }
+    ],
+    "status": "source_frozen"
+  },
+  "physics_contract": {
+    "sample": "central 2024-03-08 slow-coincidence beam-on and beam-off reconstructed spectra",
+    "variables": [
+      "reconstructed total gamma-ray energy E_tot"
+    ],
+    "binning": [
+      "source histograms: 1000 bins over 0--200 MeV",
+      "rebin factor 5: 200 bins of width 1 MeV"
+    ],
+    "normalization": "scale beam-off counts by the beam-on/beam-off integral ratio over 110 <= E_tot < 200 MeV",
+    "fit_or_transform": "histDiff = beam-on spectrum - scaled beam-off spectrum",
+    "inputs": [
+      "all_recon.root:h_total_E_M1",
+      "all_recon_BKG.root:h_total_E_M1",
+      "spectrum_110.root:histDiff for validation"
+    ],
+    "selections": [
+      "no additional selection is introduced by the plotting layer",
+      "panel (a) displays 0--200 MeV",
+      "panel (b) displays 0--100 MeV"
+    ],
+    "display_policy": [
+      "one-row, two-column layout",
+      "logarithmic count axes",
+      "beam-on spectrum in black and scaled beam-off spectrum in red",
+      "background-subtracted spectrum shown with statistical error bars"
+    ],
+    "status": "frozen"
+  },
+  "portable": {
+    "status": "implemented",
+    "preserved_root_sources": [
+      "../gamma2024_code_snapshot/DataPreprocessing/step4-convert.0308/EnergySpecGen.C"
+    ],
+    "root_entries": [
+      "plotting/root/draw_slow_coincidence_background_subtraction.C"
+    ],
+    "python_entries": [
+      "plotting/plot_slow_coincidence_background_subtraction.py"
+    ],
+    "command": "run remote job slow-coincidence-background-subtraction",
+    "minimum_python": "3.6"
+  },
+  "validation": {
+    "status": "numerically_validated",
+    "checks": [
+      "beam-on normalization counts: 1142",
+      "beam-off normalization counts before scaling: 17195",
+      "beam-off scale: 0.0664146554231",
+      "zero mismatched contents in all regular and flow bins relative to spectrum_110.root:histDiff",
+      "zero mismatched errors in all regular and flow bins relative to spectrum_110.root:histDiff"
+    ],
+    "records": [
+      {
+        "path": "results/remote_runs/slow-coincidence-background-subtraction/20260811T160015Z/slow_coincidence_background_subtraction/cshine_gamma_slow_coincidence_background_subtraction_horizontal.json",
+        "sha256": "ce78f22578935b9baa025f25bf558b4b1ce625cd7173d9e7134b39205ae645f0"
+      }
+    ],
+    "notes": "The reconstructed spectrum and its statistical uncertainties agree exactly with the published central ROOT object at tolerance 1e-9."
+  },
+  "candidate": {
+    "status": "generated",
+    "artifacts": [
+      {
+        "path": "results/remote_runs/slow-coincidence-background-subtraction/20260811T160015Z/slow_coincidence_background_subtraction/cshine_gamma_slow_coincidence_background_subtraction_horizontal.pdf",
+        "role": "horizontal Python redraw awaiting author review",
+        "sha256": "4c5515771704a62704cae0dc0fd537740f8179f78b1821530094c5d567bd4809",
+        "size_bytes": 616348
+      },
+      {
+        "path": "results/remote_runs/slow-coincidence-background-subtraction/20260811T160015Z/slow_coincidence_background_subtraction/cshine_gamma_slow_coincidence_background_subtraction_root_reference.pdf",
+        "role": "portable ROOT reference",
+        "sha256": "1b87c15527e0630c5cd984e497c94377fd93bd372086eb89ce11aad039d5fc4b",
+        "size_bytes": 21341
+      }
+    ]
+  },
+  "author_decision": {
+    "date": "2026-08-11",
+    "status": "confirmed",
+    "notes": "The author confirmed the numerically validated horizontal redraw for thesis use."
+  },
+  "thesis": {
+    "status": "used",
+    "section": "Sec. 3.5.1",
+    "label": "fig:cshine-gamma-slow-coincidence-background-subtraction",
+    "adopted_artifacts": [
+      {
+        "path": "thesis-assets/03_cshine_experiment/cshine_gamma_slow_coincidence_background_subtraction.pdf",
+        "role": "author-approved horizontal redraw",
+        "recorded_utc": "2026-08-11T17:00:00Z",
+        "sha256": "4c5515771704a62704cae0dc0fd537740f8179f78b1821530094c5d567bd4809",
+        "size_bytes": 616348
+      }
+    ]
+  },
+  "public_boundary": {
+    "contains_private_paths": false,
+    "internal_path_reference": "../../../DATA_PATHS.md",
+    "notes": "Exact collaborator paths remain in the internal data-path document; public records use portable paths and object names only."
+  }
+}

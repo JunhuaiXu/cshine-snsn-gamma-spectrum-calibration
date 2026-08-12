@@ -1,0 +1,160 @@
+{
+  "author_decision": {
+    "date": "2026-08-10",
+    "notes": "The author ran the portable entry on the server, downloaded the output, and returned it for integration into thesis Sec. 3.4.1.",
+    "status": "confirmed"
+  },
+  "candidate": {
+    "artifacts": [
+      {
+        "path": "results/figures/core_total_energy_correlations/cshine_gamma_core_total_energy_correlations_horizontal.pdf",
+        "recorded_utc": "2026-08-10T22:28:00Z",
+        "role": "pdf",
+        "sha256": "64eb3f515be9e1beec46fd1f6730d30ec412ae6694a204d8d134936f18442ef2",
+        "size_bytes": 627639
+      }
+    ],
+    "status": "generated"
+  },
+  "created_utc": "2026-08-10T22:18:38Z",
+  "figure_class": "reproducible_redraw",
+  "historical": {
+    "historical_outputs": [
+      {
+        "path": "analysis-note/figures/EcoreEtot.pdf",
+        "role": "manually assembled reference figure",
+        "sha256": "80bc2e54efdc71c22377292299075da205e9c1d5a8a894fe9b62b213dc4bb9fc",
+        "size_bytes": 205069
+      }
+    ],
+    "input_objects": [
+      "h2_check.root:central_h2_TotalE_CenterE",
+      "h2_check.root:side_h2_TotalE_CenterE"
+    ],
+    "publication_or_note_figure": "Analysis-note Fig. 12; identical PRC supplementary EcoreEtot figure",
+    "source_files": [
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/h2_check.C",
+        "sha256": "d2870f286774c24f878b9eccdb7e9c2da1f3beecc1379a29aab91f321286096e"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/Drawhistos.C",
+        "sha256": "9302e43a298451a55d7f5964c3909349a7d9573c3d694bf79ded27cc2d54444e"
+      }
+    ],
+    "status": "source_frozen"
+  },
+  "physics_contract": {
+    "binning": [
+      "both panels: 50 x 80 bins over E_tot=5--200 MeV and E_core=0--80 MeV"
+    ],
+    "display_policy": [
+      "horizontal two-panel layout in analysis-note panel order",
+      "complete axes and an independent logarithmic count color scale in each panel",
+      "panel labels at upper left",
+      "zero-count bins masked; positive in-range counts unchanged",
+      "underflow and overflow recorded but not drawn"
+    ],
+    "fit_or_transform": "h2_check.C fills each accepted candidate with reconstructed total energy and the calibrated energy of its reconstructed core crystal; no later transform or fit is applied",
+    "inputs": [
+      "DataPreprocessing/step7-DeltaYrelated/h2_check.root",
+      "central_h2_TotalE_CenterE",
+      "side_h2_TotalE_CenterE"
+    ],
+    "normalization": "none",
+    "sample": "Reconstructed candidates from the fixed March 4--10 GammaCaliData sample. Central cores are units 5, 6, 9, 10; side cores are units 4, 7, 8, 11, 13, 14 and require count_veto == 0.",
+    "selections": [
+      "no local-multiplicity requirement for either source object",
+      "panel (a) merges the four central-core histograms",
+      "panel (b) merges the six accepted side-core histograms"
+    ],
+    "status": "frozen",
+    "variables": [
+      "E_tot = reconstructed cluster energy [MeV]",
+      "E_core = calibrated energy of the reconstructed core crystal [MeV]"
+    ]
+  },
+  "portable": {
+    "command": "python3 plotting/plot_core_total_energy_correlations.py --analysis-root /path/to/gamma2024 --output-dir results/figures",
+    "minimum_python": "3.6",
+    "preserved_root_sources": [
+      "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/h2_check.C",
+      "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/Drawhistos.C"
+    ],
+    "python_entries": [
+      "plotting/plot_core_total_energy_correlations.py"
+    ],
+    "root_entries": [
+      "plotting/root/draw_core_total_energy_correlations.C"
+    ],
+    "status": "checked"
+  },
+  "public_boundary": {
+    "contains_private_paths": false,
+    "internal_path_reference": "../../../DATA_PATHS.md",
+    "notes": "Experimental data and generated binary outputs are not distributed."
+  },
+  "schema_version": 1,
+  "stable_id": "cshine-core-total-energy-correlations",
+  "thesis": {
+    "adopted_artifacts": [
+      {
+        "path": "thesis-assets/03_cshine_experiment/cshine_gamma_core_total_energy_correlations.pdf",
+        "recorded_utc": "2026-08-10T22:29:52Z",
+        "role": "pdf",
+        "sha256": "64eb3f515be9e1beec46fd1f6730d30ec412ae6694a204d8d134936f18442ef2",
+        "size_bytes": 627639
+      }
+    ],
+    "label": "fig:cshine-gamma-core-total-energy-correlations",
+    "section": "Sec. 3.4.1",
+    "status": "used"
+  },
+  "title": "Core energy versus total reconstructed energy for central and side cores",
+  "updated_utc": "2026-08-10T22:29:52Z",
+  "validation": {
+    "checks": [
+      "historical ROOT object names, source selections, dimensions, ranges, normalization, and independent log scales were frozen by static source inspection",
+      "portable Python syntax and record consistency are checked locally before server transfer",
+      "real-data object counts and output checksums remain pending until the server script is run"
+    ],
+    "notes": "The real-data run read the two frozen ROOT objects without rebinning, normalization, or fitting. Central and side entries sum to the 16,093,168 accepted candidates independently recorded by the spatial-spread objects from the same ROOT file.",
+    "records": [
+      {
+        "result": "source definitions and output-layer behavior frozen",
+        "type": "static-source-inspection"
+      },
+      {
+        "command": "python3 syntax compilation and --help entry check",
+        "result": "passed",
+        "type": "syntax"
+      },
+      {
+        "command": "python3 tools/figure_workflow.py check plotting/records/cshine-core-total-energy-correlations.json",
+        "result": "passed",
+        "type": "record-consistency"
+      },
+      {
+        "input_sha256": "3b43dc8ffd86a346636f7f41c4045922c07b8f7916a5fa20cdf3ab3c2effb8be",
+        "objects": {
+          "central_h2_TotalE_CenterE": {
+            "entries": 6136451,
+            "in_range_counts": 928635,
+            "including_underflow_overflow": 6136451,
+            "outside_displayed_range": 5207816
+          },
+          "side_h2_TotalE_CenterE": {
+            "entries": 9956717,
+            "in_range_counts": 1270716,
+            "including_underflow_overflow": 9956717,
+            "outside_displayed_range": 8686001
+          }
+        },
+        "result": "real-data ROOT-object, binning, and count checks passed",
+        "software": "Python 3.6.9; ROOT 6.28/04; NumPy 1.19.5; Matplotlib 3.3.4",
+        "type": "real-data-object-check"
+      }
+    ],
+    "status": "real_data_checked"
+  }
+}

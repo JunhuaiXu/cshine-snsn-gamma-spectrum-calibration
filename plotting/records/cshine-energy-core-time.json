@@ -1,0 +1,157 @@
+{
+  "author_decision": {
+    "date": "2026-08-10",
+    "notes": "The author ran the portable entry on the authorized server, downloaded the output, and returned it for replacement of the historical direct-copy figure in thesis Sec. 3.3.4.",
+    "status": "confirmed"
+  },
+  "candidate": {
+    "artifacts": [
+      {
+        "path": "results/figures/energy_core_time_correlation/cshine_gamma_energy_core_time_correlation.pdf",
+        "recorded_utc": "2026-08-10T22:50:10Z",
+        "role": "pdf",
+        "sha256": "b50b2f0a0ec348f93a8830aa317801675117d6b1a5d78242af3dad6e9b46caab",
+        "size_bytes": 436745
+      }
+    ],
+    "status": "generated"
+  },
+  "created_utc": "2026-08-10T22:40:21Z",
+  "figure_class": "reproducible_redraw",
+  "historical": {
+    "historical_outputs": [
+      {
+        "path": "analysis-note/figures/ALL_h2_TOF_TotalE.pdf",
+        "role": "published ROOT reference figure",
+        "sha256": "6e1aecec8a47d8b982de54a5e31d27278a39265ff4b05e71573cb6d45b7c60b7",
+        "size_bytes": 33748
+      }
+    ],
+    "input_objects": [
+      "h2_check.root:ALL_h2_TOF_TotalE"
+    ],
+    "publication_or_note_figure": "Analysis-note Fig. 13; identical PRC supplementary ALL_h2_TOF_TotalE figure",
+    "source_files": [
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/h2_check.C",
+        "sha256": "d2870f286774c24f878b9eccdb7e9c2da1f3beecc1379a29aab91f321286096e"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/Drawhistos.C",
+        "sha256": "9302e43a298451a55d7f5964c3909349a7d9573c3d694bf79ded27cc2d54444e"
+      }
+    ],
+    "status": "source_frozen"
+  },
+  "physics_contract": {
+    "binning": [
+      "published merged object: 100 x 200 bins over T_core=-500--500 ns and E_tot=0--200 MeV"
+    ],
+    "display_policy": [
+      "single complete panel with one logarithmic count color scale",
+      "zero-count bins masked; positive in-range counts unchanged",
+      "underflow and overflow recorded but not drawn"
+    ],
+    "fit_or_transform": "GammaTime is corrected upstream; h2_check.C fills each accepted candidate directly with GammaTime[core] and reconstructed total energy; no later transform or fit is applied",
+    "inputs": [
+      "DataPreprocessing/step7-DeltaYrelated/h2_check.root",
+      "ALL_h2_TOF_TotalE"
+    ],
+    "normalization": "none",
+    "sample": "Reconstructed candidates from the fixed March 4--10 GammaCaliData sample. Central cores are units 5, 6, 9, 10; side cores are units 4, 7, 8, 11, 13, 14 and require count_veto == 0.",
+    "selections": [
+      "no local-multiplicity requirement",
+      "no additional energy or time-window requirement",
+      "the merged object combines accepted central- and side-core candidates"
+    ],
+    "status": "frozen",
+    "variables": [
+      "T_core = corrected time GammaTime[core] of the reconstructed core crystal [ns]",
+      "E_tot = reconstructed cluster energy [MeV]"
+    ]
+  },
+  "portable": {
+    "command": "python3 plotting/plot_energy_core_time_correlation.py --analysis-root /path/to/gamma2024 --output-dir results/figures",
+    "minimum_python": "3.6",
+    "preserved_root_sources": [
+      "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/h2_check.C",
+      "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/Drawhistos.C"
+    ],
+    "python_entries": [
+      "plotting/plot_energy_core_time_correlation.py"
+    ],
+    "root_entries": [
+      "plotting/root/draw_energy_core_time_correlation.C"
+    ],
+    "status": "checked"
+  },
+  "public_boundary": {
+    "contains_private_paths": false,
+    "internal_path_reference": "../../../DATA_PATHS.md",
+    "notes": "Experimental data and generated binary outputs are not distributed. Exact server paths are recorded only in the internal path document."
+  },
+  "schema_version": 1,
+  "stable_id": "cshine-energy-core-time",
+  "thesis": {
+    "adopted_artifacts": [
+      {
+        "path": "thesis-assets/03_cshine_experiment/cshine_gamma_energy_core_time_correlation.pdf",
+        "recorded_utc": "2026-08-10T22:50:10Z",
+        "role": "pdf",
+        "sha256": "b50b2f0a0ec348f93a8830aa317801675117d6b1a5d78242af3dad6e9b46caab",
+        "size_bytes": 436745
+      }
+    ],
+    "label": "fig:cshine-gamma-energy-core-time",
+    "section": "Sec. 3.3.4",
+    "status": "used"
+  },
+  "title": "Reconstructed total energy versus corrected core-crystal time",
+  "updated_utc": "2026-08-10T22:50:10Z",
+  "validation": {
+    "checks": [
+      "historical object name, upstream sample selection, variables, displayed ranges, and lack of normalization were frozen by source inspection",
+      "analysis-note and PRC supplementary PDFs were verified byte-identical",
+      "portable Python syntax and record consistency are checked locally",
+      "real-data object schema, counts, input and output checksums were recorded by the authorized server run"
+    ],
+    "notes": "The historical source initializes per-crystal histograms over 0--200 MeV but initializes intermediate and all-core merge targets over 0--7 before ROOT Merge. The real-data run verified that the published merged object has the final 100 x 200, 0--200 MeV schema. The portable entry reads that object without rebinning, normalization, fitting, or event reconstruction.",
+    "records": [
+      {
+        "result": "source definitions, published object schema, and output-layer behavior frozen",
+        "type": "static-source-inspection"
+      },
+      {
+        "command": "python3 syntax compilation and --help entry check",
+        "result": "passed",
+        "type": "syntax"
+      },
+      {
+        "command": "python3 tools/figure_workflow.py check plotting/records/cshine-energy-core-time.json",
+        "result": "passed",
+        "type": "record-consistency"
+      },
+      {
+        "input_sha256": "3b43dc8ffd86a346636f7f41c4045922c07b8f7916a5fa20cdf3ab3c2effb8be",
+        "object": {
+          "ALL_h2_TOF_TotalE": {
+            "entries": 16093168,
+            "in_range_counts": 15864261,
+            "including_underflow_overflow": 16093168,
+            "maximum_bin_count": 769752,
+            "nonzero_bins": 4014,
+            "outside_displayed_range": 228907,
+            "x_overflow": 122023,
+            "x_underflow": 106633,
+            "y_overflow_with_x_in_range": 251,
+            "y_underflow_with_x_in_range": 0
+          }
+        },
+        "result": "real-data ROOT-object, published-binning, count, and output-checksum checks passed",
+        "software": "Python 3.6.9; ROOT 6.28/04; NumPy 1.19.5; Matplotlib 3.3.4",
+        "type": "real-data-object-check"
+      }
+    ],
+    "status": "real_data_checked"
+  }
+}

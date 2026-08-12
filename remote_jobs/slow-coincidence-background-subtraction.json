@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "job_id": "slow-coincidence-background-subtraction",
+  "description": "Reconstruct, validate, and redraw the central slow-coincidence beam-off background subtraction in a horizontal two-panel layout.",
+  "uploads": [
+    {
+      "local": "plotting/plot_slow_coincidence_background_subtraction.py",
+      "remote_name": "plot_slow_coincidence_background_subtraction.py"
+    },
+    {
+      "local": "plotting/root/draw_slow_coincidence_background_subtraction.C",
+      "remote_name": "draw_slow_coincidence_background_subtraction.C"
+    }
+  ],
+  "commands": [
+    [
+      "python3",
+      "-m",
+      "py_compile",
+      "{remote_code_dir}/plot_slow_coincidence_background_subtraction.py"
+    ],
+    [
+      "root",
+      "-l",
+      "-b",
+      "-q",
+      "{remote_code_dir}/draw_slow_coincidence_background_subtraction.C(\"{analysis_root}\",\"{run_output_dir}\",false)"
+    ],
+    [
+      "python3",
+      "{remote_code_dir}/plot_slow_coincidence_background_subtraction.py",
+      "--analysis-root",
+      "{analysis_root}",
+      "--output-dir",
+      "{run_output_dir}"
+    ]
+  ],
+  "outputs": [
+    "slow_coincidence_background_subtraction/cshine_gamma_slow_coincidence_background_subtraction_root_reference.pdf",
+    "slow_coincidence_background_subtraction/cshine_gamma_slow_coincidence_background_subtraction_root_reference.png",
+    "slow_coincidence_background_subtraction/cshine_gamma_slow_coincidence_background_subtraction_horizontal.pdf",
+    "slow_coincidence_background_subtraction/cshine_gamma_slow_coincidence_background_subtraction_horizontal.png",
+    "slow_coincidence_background_subtraction/cshine_gamma_slow_coincidence_background_subtraction_horizontal.json"
+  ]
+}

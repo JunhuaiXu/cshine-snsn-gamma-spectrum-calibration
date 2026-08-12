@@ -1,0 +1,79 @@
+{
+  "author_decision": {
+    "date": "2026-08-08",
+    "notes": "The author approved the real-data horizontal redraw for thesis Sec. 3.3.2.",
+    "status": "confirmed"
+  },
+  "candidate": {
+    "artifacts": [
+      {
+        "path": "results/figures/unit_time_difference/cshine_gamma_unit05_time_and_neighbor_difference_horizontal.pdf",
+        "role": "pdf",
+        "sha256": "47a30e1380cfdcfbfc3ff51bcc768a6a9c50c910727bb8c319abcc20010dac1a",
+        "size_bytes": 612580
+      }
+    ],
+    "status": "generated"
+  },
+  "created_utc": "2026-08-11T00:00:00Z",
+  "figure_class": "reproducible_redraw",
+  "historical": {
+    "historical_outputs": [],
+    "input_objects": ["h3", "h1", "hh_diff"],
+    "publication_or_note_figure": "Analysis-note Fig. 6",
+    "source_files": [
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step4-convert.0308.PreRun/draw_GammaTimeDiff.C",
+        "sha256": "6ad88f3440b6b79356f13701769d2d65eb48027f61fafcd050fc904cedcfd2c6"
+      }
+    ],
+    "status": "source_frozen"
+  },
+  "physics_contract": {
+    "binning": ["CsI05 time: 100 bins over -500 to 500 ns", "CsI05--CsI06 difference: 100 bins over -200 to 200 ns"],
+    "display_policy": ["horizontal two-panel layout", "the selected time-difference histogram is peak-scaled only for display", "unscaled ROOT object is retained"],
+    "fit_or_transform": "display scale = maximum(h1) / maximum(hh_diff)",
+    "inputs": ["M7 neighbor_time_diagnostics.root:h3", "M7 neighbor_time_diagnostics.root:h1", "M7 neighbor_time_diagnostics.root:hh_diff"],
+    "normalization": "No normalization for h3 or h1; hh_diff is multiplied by the recorded peak-height ratio in the comparison panel only.",
+    "sample": "The fixed 60-file March 4--10 calibrated-event sample encoded by the central M6 run manifest.",
+    "selections": ["h3 and h1: no energy selection", "hh_diff: GammaEnergy[5] + GammaEnergy[6] >= 30 MeV"],
+    "status": "frozen",
+    "variables": ["GammaTime[5]", "GammaTime[5] - GammaTime[6]"]
+  },
+  "portable": {
+    "command": "python3 plotting/plot_unit_time_and_neighbor_difference.py --diagnostics-root results/data_preprocessing/m7/RUN/neighbor_time_diagnostics.root --output-dir results/figures",
+    "minimum_python": "3.6",
+    "preserved_root_sources": ["../gamma2024_code_snapshot/DataPreprocessing/step4-convert.0308.PreRun/draw_GammaTimeDiff.C"],
+    "python_entries": ["plotting/plot_unit_time_and_neighbor_difference.py"],
+    "root_entries": ["plotting/root/draw_neighbor_time_diagnostics.C"],
+    "status": "implemented"
+  },
+  "public_boundary": {
+    "contains_private_paths": false,
+    "internal_path_reference": "../../../DATA_PATHS.md",
+    "notes": "Experimental data and generated binary outputs are not distributed."
+  },
+  "schema_version": 1,
+  "stable_id": "unit05-time-neighbor-difference",
+  "thesis": {
+    "adopted_artifacts": [
+      {
+        "path": "thesis-assets/03_cshine_experiment/cshine_gamma_unit05_time_neighbor_difference.pdf",
+        "role": "pdf",
+        "sha256": "47a30e1380cfdcfbfc3ff51bcc768a6a9c50c910727bb8c319abcc20010dac1a",
+        "size_bytes": 612580
+      }
+    ],
+    "label": "fig:cshine-gamma-unit-time-neighbor-difference",
+    "section": "Sec. 3.3.2",
+    "status": "used"
+  },
+  "title": "CsI05 corrected time and CsI05--CsI06 time difference",
+  "updated_utc": "2026-08-11T00:00:00Z",
+  "validation": {
+    "checks": ["The exact 60-file input list, expressions, selection, binning, and ranges were traced to the frozen ROOT macro.", "The direct-tree ROOT and Python routes gave the same real-data peak-scale factor 52.00885."],
+    "notes": "The M7 object producer adds synthetic ROOT validation; the adopted PDF predates that producer and was generated through the retained direct-tree provenance mode.",
+    "records": [{"peak_scale": 52.00885, "result": "passed", "type": "real-data-direct-tree-check"}],
+    "status": "real_data_checked"
+  }
+}

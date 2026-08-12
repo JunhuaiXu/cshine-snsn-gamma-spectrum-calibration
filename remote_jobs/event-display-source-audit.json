@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "job_id": "event-display-source-audit",
+  "description": "Audit historical EventDisplay source and output files without reading ROOT data or modifying the analysis directory.",
+  "uploads": [
+    {
+      "local": "tools/audit_event_display_sources.py",
+      "remote_name": "audit_event_display_sources.py"
+    }
+  ],
+  "commands": [
+    [
+      "python3",
+      "-m",
+      "py_compile",
+      "{remote_code_dir}/audit_event_display_sources.py"
+    ],
+    [
+      "python3",
+      "{remote_code_dir}/audit_event_display_sources.py",
+      "--analysis-root",
+      "{analysis_root}",
+      "--output",
+      "{run_output_dir}/event_display_source_audit/event_display_source_audit.json"
+    ]
+  ],
+  "outputs": [
+    "event_display_source_audit/event_display_source_audit.json"
+  ]
+}

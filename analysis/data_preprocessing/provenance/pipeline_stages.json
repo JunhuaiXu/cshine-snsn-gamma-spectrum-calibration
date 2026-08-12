@@ -1,0 +1,748 @@
+{
+  "project": "CSHINE-Gamma Chapter 3 DataPreprocessing",
+  "schema_version": 1,
+  "stages": [
+    {
+      "depends_on": [],
+      "external_inputs": [
+        "immutable DataPreprocessing source snapshot",
+        "reviewed thesis-output map"
+      ],
+      "figure_outputs": [
+        "cshine-spectra-reconstruction"
+      ],
+      "historical_source_ids": [
+        "DP-S409",
+        "DP-S604",
+        "DP-S801",
+        "DP-S802",
+        "DP-S803"
+      ],
+      "id": "M0B",
+      "inputs": [],
+      "outputs": [
+        {
+          "id": "chapter3-source-map",
+          "kind": "provenance",
+          "root_objects": [],
+          "terminal": false
+        }
+      ],
+      "portable_entries": [
+        "tools/source_index.py",
+        "tools/pipeline_workflow.py",
+        "analysis/data_preprocessing/provenance/pipeline_stages.json",
+        "analysis/data_preprocessing/config/reconstruction_spectra_figure_run_groups.tsv",
+        "plotting/plot_reconstruction_spectra.py",
+        "plotting/records/cshine-spectra-reconstruction.json"
+      ],
+      "status": "closed",
+      "thesis_outputs": [
+        "cshine-spectra-reconstruction"
+      ],
+      "thesis_scope": "Chapter 3",
+      "title": "Freeze the full Chapter 3 source and data-flow boundary",
+      "unresolved": [
+        "The historical 15-channel M5 time-fit batch producer is absent; surviving fit artifacts remain a read-only audited boundary",
+        "The portable 59-group before/after reconstruction figure path has not been rerun on the full experimental sample"
+      ]
+    },
+    {
+      "depends_on": [],
+      "external_inputs": [
+        "historical calibration ROOT objects"
+      ],
+      "figure_outputs": [],
+      "historical_source_ids": [
+        "DP-S300",
+        "DP-S301",
+        "DP-S302",
+        "DP-S303",
+        "DP-S304",
+        "DP-S305",
+        "DP-S306"
+      ],
+      "id": "M1",
+      "inputs": [],
+      "outputs": [
+        {
+          "id": "calibration-root-library",
+          "kind": "software",
+          "root_objects": [
+            "t_2d_fit",
+            "t_gamma_cali"
+          ],
+          "terminal": false
+        }
+      ],
+      "portable_entries": [
+        "analysis/data_preprocessing/include/t_2d_fit.h",
+        "analysis/data_preprocessing/include/t_gamma_cali.h",
+        "analysis/data_preprocessing/src/t_2d_fit.cxx",
+        "analysis/data_preprocessing/src/t_gamma_cali.cxx",
+        "analysis/data_preprocessing/include/LinkDef.h"
+      ],
+      "status": "code_migrated",
+      "thesis_outputs": [],
+      "thesis_scope": "Sec. 3.3.1",
+      "title": "Portable calibration ROOT classes and dictionary",
+      "unresolved": []
+    },
+    {
+      "depends_on": [],
+      "external_inputs": [
+        "21 radioactive-source ROOT files",
+        "24 source-background ROOT files"
+      ],
+      "figure_outputs": [],
+      "historical_source_ids": [
+        "DP-S000"
+      ],
+      "id": "M2",
+      "inputs": [],
+      "outputs": [
+        {
+          "id": "source-background-spectra",
+          "kind": "root-file",
+          "root_objects": [
+            "h_src_XE_00--14",
+            "h_bkg_XE_00--14",
+            "h_nobkg_XE_00--14"
+          ],
+          "terminal": false
+        }
+      ],
+      "portable_entries": [
+        "analysis/data_preprocessing/include/source_background_spectra.h",
+        "analysis/data_preprocessing/src/source_background_spectra.cxx",
+        "analysis/data_preprocessing/apps/build_source_spectra.cxx"
+      ],
+      "status": "code_migrated",
+      "thesis_outputs": [
+        "cshine-radioactive-source-net-spectra"
+      ],
+      "thesis_scope": "Sec. 3.3.1",
+      "title": "Build live-time-normalized radioactive-source spectra",
+      "unresolved": []
+    },
+    {
+      "depends_on": [
+        "M1"
+      ],
+      "external_inputs": [
+        "105 central-date raw ROOT files"
+      ],
+      "figure_outputs": [],
+      "historical_source_ids": [
+        "DP-S100",
+        "DP-S101",
+        "DP-S102"
+      ],
+      "id": "M3",
+      "inputs": [
+        "calibration-root-library"
+      ],
+      "outputs": [
+        {
+          "id": "gain-relation",
+          "kind": "root-file",
+          "root_objects": [
+            "f_data",
+            "c"
+          ],
+          "terminal": false
+        }
+      ],
+      "portable_entries": [
+        "analysis/data_preprocessing/include/gain_relation.h",
+        "analysis/data_preprocessing/src/gain_relation.cxx",
+        "analysis/data_preprocessing/apps/fit_gain_relation.cxx"
+      ],
+      "status": "code_migrated",
+      "thesis_outputs": [
+        "cshine-gain-relation"
+      ],
+      "thesis_scope": "Sec. 3.3.1",
+      "title": "Fit the low- and high-gain channel relation",
+      "unresolved": []
+    },
+    {
+      "depends_on": [
+        "M1",
+        "M2",
+        "M3"
+      ],
+      "external_inputs": [],
+      "figure_outputs": [],
+      "historical_source_ids": [
+        "DP-S200",
+        "DP-S201"
+      ],
+      "id": "M4",
+      "inputs": [
+        "calibration-root-library",
+        "source-background-spectra",
+        "gain-relation"
+      ],
+      "outputs": [
+        {
+          "id": "energy-calibration",
+          "kind": "root-file",
+          "root_objects": [
+            "cali_20240308",
+            "g_0--14",
+            "f_0--14"
+          ],
+          "terminal": false
+        }
+      ],
+      "portable_entries": [
+        "analysis/data_preprocessing/include/energy_calibration.h",
+        "analysis/data_preprocessing/src/energy_calibration.cxx",
+        "analysis/data_preprocessing/apps/fit_energy_calibration.cxx"
+      ],
+      "status": "code_migrated",
+      "thesis_outputs": [
+        "cshine-energy-calibration-table"
+      ],
+      "thesis_scope": "Sec. 3.3.1 and Appendix A",
+      "title": "Fit the three-point crystal energy calibration",
+      "unresolved": [
+        "A read-only exporter must still compare historical calibration values with the thesis table"
+      ]
+    },
+    {
+      "depends_on": [
+        "M0B",
+        "M4"
+      ],
+  "external_inputs": [
+    "raw detector event trees from the reviewed 2024-03-03 through 2024-03-10 timing patterns",
+    "historical per-crystal fit outputs"
+      ],
+      "figure_outputs": [
+        "time-amplitude-csi05",
+        "time-amplitude-all"
+      ],
+      "historical_source_ids": [
+        "DP-S400",
+        "DP-S401",
+        "DP-S403",
+        "DP-S404",
+        "DP-S405",
+        "DP-S406",
+        "DP-S407",
+        "DP-S408",
+        "DP-S409"
+      ],
+      "id": "M5",
+      "inputs": [
+        "chapter3-source-map",
+        "energy-calibration"
+      ],
+      "outputs": [
+        {
+          "id": "time-calibration",
+          "kind": "root-and-text",
+          "root_objects": [
+            "f_00--14"
+          ],
+          "terminal": false
+        },
+        {
+          "id": "time-amplitude-diagnostics",
+      "kind": "root-file",
+      "root_objects": [
+        "h_TOF_one_0_c0--h_TOF_one_14_c3",
+        "h_TOF_move_0--h_TOF_move_14",
+        "h_TOF_move_cali_0--h_TOF_move_cali_14"
+          ],
+          "terminal": true
+        }
+      ],
+      "portable_entries": [
+        "analysis/data_preprocessing/include/time_calibration.h",
+        "analysis/data_preprocessing/src/time_calibration.cxx",
+        "analysis/data_preprocessing/tests/test_time_calibration.cxx",
+    "analysis/data_preprocessing/include/time_fit_outputs.h",
+    "analysis/data_preprocessing/src/time_fit_outputs.cxx",
+    "analysis/data_preprocessing/apps/inspect_time_fit_outputs.cxx",
+    "analysis/data_preprocessing/tests/test_time_fit_outputs.cxx",
+    "analysis/data_preprocessing/include/time_amplitude_spectra.h",
+    "analysis/data_preprocessing/src/time_amplitude_spectra.cxx",
+    "analysis/data_preprocessing/apps/build_time_amplitude_spectra.cxx",
+    "analysis/data_preprocessing/tests/test_time_amplitude_spectra.cxx"
+  ],
+  "status": "code_migrated",
+      "thesis_outputs": [
+        "time-amplitude-csi05",
+        "time-amplitude-all",
+        "cshine-time-correction-table"
+      ],
+      "thesis_scope": "Sec. 3.3.1 and Appendix A",
+  "title": "Produce time-amplitude spectra, audit historical fits, and apply the per-crystal correction",
+      "unresolved": [
+    "Archived-source and bounded server-directory searches found no historical batch fit producer; the surviving ROOT/text pairs are immutable audit inputs, not reproducible fit outputs",
+    "Production and diagnostic correction headers differ in the constant term",
+    "The historical diagnostic macro's implicit floating-to-unsigned conversion is preserved explicitly and remains diagnostic only",
+    "The full historical raw data set was not rerun; portable spectrum production is verified with synthetic ROOT inputs"
+  ]
+    },
+    {
+      "depends_on": [
+        "M4",
+        "M5"
+      ],
+      "external_inputs": [
+        "central run manifest",
+        "raw detector event trees"
+      ],
+      "figure_outputs": [],
+      "historical_source_ids": [
+        "DP-S500",
+        "DP-S501",
+        "DP-S502",
+        "DP-S503"
+      ],
+      "id": "M6",
+      "inputs": [
+        "energy-calibration",
+        "time-calibration"
+      ],
+      "outputs": [
+        {
+          "id": "calibrated-event-trees",
+          "kind": "root-tree",
+          "root_objects": [
+            "GammaCaliData",
+            "GammaEnergy[15]",
+            "GammaTime[15]"
+          ],
+          "terminal": false
+        }
+      ],
+      "portable_entries": [
+        "analysis/data_preprocessing/config/central_beam_on_run_groups.tsv",
+        "analysis/data_preprocessing/include/gamma_raw_data.hpp",
+        "analysis/data_preprocessing/include/calibrated_event_tree.h",
+        "analysis/data_preprocessing/src/calibrated_event_tree.cxx",
+        "analysis/data_preprocessing/apps/build_calibrated_event_tree.cxx",
+        "analysis/data_preprocessing/tests/test_calibrated_event_tree.cxx",
+        "tools/data_preprocessing.py"
+      ],
+      "status": "code_migrated",
+      "thesis_outputs": [],
+      "thesis_scope": "Secs. 3.3.1-3.3.2",
+      "title": "Produce event-level calibrated energy and time arrays",
+      "unresolved": [
+        "The full historical 60-run production has not been rerun; migration closure is based on frozen-source comparison and synthetic ROOT tests"
+      ]
+    },
+    {
+      "depends_on": [
+        "M6"
+      ],
+      "external_inputs": [],
+      "figure_outputs": [
+        "neighbor-time-csi05-csi06",
+        "unit05-time-neighbor-difference"
+      ],
+      "historical_source_ids": [
+        "DP-S504"
+      ],
+      "id": "M7",
+      "inputs": [
+        "calibrated-event-trees"
+      ],
+      "outputs": [
+        {
+          "id": "neighbor-time-diagnostics",
+          "kind": "root-file",
+          "root_objects": [
+            "h2_all",
+            "h2_cut",
+            "h1",
+            "hh_diff",
+            "h3",
+            "h4"
+          ],
+          "terminal": true
+        }
+      ],
+      "portable_entries": [
+        "analysis/data_preprocessing/include/neighbor_time_diagnostics.h",
+        "analysis/data_preprocessing/src/neighbor_time_diagnostics.cxx",
+        "analysis/data_preprocessing/apps/build_neighbor_time_diagnostics.cxx",
+        "analysis/data_preprocessing/tests/test_neighbor_time_diagnostics.cxx",
+        "plotting/root/draw_neighbor_time_diagnostics.C",
+        "plotting/plot_neighbor_time_correlation.py",
+        "plotting/plot_unit_time_and_neighbor_difference.py",
+        "tools/data_preprocessing.py"
+      ],
+      "status": "code_migrated",
+      "thesis_outputs": [
+        "neighbor-time-csi05-csi06",
+        "unit05-time-neighbor-difference"
+      ],
+      "thesis_scope": "Sec. 3.3.2",
+      "title": "Produce neighboring-crystal timing diagnostics",
+      "unresolved": [
+        "The portable M7 producer has synthetic ROOT coverage but has not yet been rerun over the authorized 60-file real-data set; the already adopted thesis figures were validated through the earlier direct-tree rendering route."
+      ]
+    },
+    {
+      "depends_on": [
+        "M0B",
+        "M6"
+      ],
+      "external_inputs": [
+        "reviewed detector geometry and veto-channel mapping"
+      ],
+      "figure_outputs": [],
+      "historical_source_ids": [
+        "DP-S307",
+        "DP-S308",
+        "DP-S600"
+      ],
+      "id": "M8",
+      "inputs": [
+        "chapter3-source-map",
+        "calibrated-event-trees"
+      ],
+      "outputs": [
+        {
+          "id": "reconstructed-event-trees",
+          "kind": "root-tree-and-histograms",
+          "root_objects": [
+            "GammaCaliData with recon_result and count_veto",
+            "h_eDep_0--14",
+            "h_recon_0--14",
+            "h_recon_veto_0--14",
+            "h_recon_vetoed_0--14"
+          ],
+          "terminal": false
+        }
+      ],
+      "portable_entries": [
+        "analysis/data_preprocessing/include/jiugong_recon.h",
+        "analysis/data_preprocessing/src/jiugong_recon.cxx",
+        "analysis/data_preprocessing/include/shower_reconstruction.h",
+        "analysis/data_preprocessing/src/shower_reconstruction.cxx",
+        "analysis/data_preprocessing/include/ReconstructionLinkDef.h",
+        "analysis/data_preprocessing/include/reconstructed_event_tree.h",
+        "analysis/data_preprocessing/src/reconstructed_event_tree.cxx",
+        "analysis/data_preprocessing/apps/build_reconstructed_event_tree.cxx",
+        "analysis/data_preprocessing/tests/test_shower_reconstruction.cxx",
+        "analysis/data_preprocessing/tests/test_reconstructed_event_tree.cxx"
+      ],
+      "status": "code_migrated",
+      "thesis_outputs": [
+        "cshine-reconstruction-geometry"
+      ],
+      "thesis_scope": "Sec. 3.3.3",
+      "title": "Reconstruct gamma-ray clusters and candidate cores",
+      "unresolved": [
+        "The complete historical experimental sample has not been rerun; M9 supplies reviewed run-group orchestration and spectrum merging"
+      ]
+    },
+    {
+      "depends_on": [
+        "M8"
+      ],
+      "external_inputs": [
+        "reviewed 60-group beam-on and six-group beam-off M6 event-tree directories"
+      ],
+      "figure_outputs": [],
+      "historical_source_ids": [
+        "DP-S601",
+        "DP-S602",
+        "DP-S603"
+      ],
+      "id": "M9",
+      "inputs": [
+        "reconstructed-event-trees"
+      ],
+      "outputs": [
+        {
+          "id": "manifest-reconstructed-event-trees",
+          "kind": "root-tree-set",
+          "root_objects": [
+            "manifest-defined per-run GammaCaliData trees with stored recon_result and count_veto"
+          ],
+          "terminal": false
+        },
+        {
+          "id": "merged-reconstructed-events",
+          "kind": "root-file",
+          "root_objects": [
+            "manifest-defined per-run GammaCaliData trees with stored recon_result and count_veto",
+            "h_recon_0--14, h_recon_veto_0--14 and h_recon_vetoed_0--14",
+            "h_central_E_M1, h_side_E_M1 and h_total_E_M1",
+            "c1 and h_rate"
+          ],
+          "terminal": false
+        }
+      ],
+      "portable_entries": [
+        "analysis/data_preprocessing/config/central_beam_on_run_groups.tsv",
+        "analysis/data_preprocessing/config/central_beam_off_run_groups.tsv",
+        "analysis/data_preprocessing/include/reconstructed_spectrum_merge.h",
+        "analysis/data_preprocessing/src/reconstructed_spectrum_merge.cxx",
+        "analysis/data_preprocessing/apps/merge_reconstructed_spectra.cxx",
+        "analysis/data_preprocessing/tests/test_reconstructed_spectrum_merge.cxx",
+        "tools/data_preprocessing.py",
+        "tools/tests/test_data_preprocessing_tool.py"
+      ],
+      "status": "code_migrated",
+      "thesis_outputs": [
+        "cshine-run-groups"
+      ],
+      "thesis_scope": "Secs. 3.3.4-3.3.5",
+      "title": "Run and merge the reviewed event-reconstruction file groups",
+      "unresolved": [
+        "The complete 60-group beam-on and six-group beam-off samples have not been rerun through the migrated implementation",
+        "Trigger-variant orchestration remains outside M9 and will be classified with the corresponding M10 diagnostics"
+      ]
+    },
+    {
+      "depends_on": [
+        "M9"
+      ],
+      "external_inputs": [],
+      "figure_outputs": [
+        "reconstruction-multiplicity",
+        "cshine-spatial-correlation-energy-intervals",
+        "cshine-energy-spatial-spread-correlations",
+        "cshine-core-total-energy-correlations",
+        "cshine-cosmic-muon-topology",
+        "cshine-energy-core-time",
+        "cshine-trigger-tdc-distributions",
+        "cshine-trigger-energy-time-correlations"
+      ],
+      "historical_source_ids": [
+        "DP-S700",
+        "DP-S701",
+        "DP-S702",
+        "DP-S703",
+        "DP-S704",
+        "DP-S705",
+        "DP-S706",
+        "DP-S707",
+        "DP-S708",
+        "DP-S709",
+        "DP-S710",
+        "DP-S711",
+        "DP-S712",
+        "DP-S713",
+        "DP-S714",
+        "DP-S715",
+        "DP-S716",
+        "DP-S717",
+        "DP-S718",
+        "DP-S719",
+        "DP-S720"
+      ],
+      "id": "M10",
+      "inputs": [
+        "manifest-reconstructed-event-trees"
+      ],
+      "outputs": [
+        {
+          "id": "chapter3-diagnostic-objects",
+          "kind": "root-file",
+          "root_objects": [
+            "ALL_h2_TotalE_DeltaY and ALL_h2_TotalE_Delta",
+            "ALL_h2_ax_ay_10_100 and ALL_h2_ax_ay_100_inf",
+            "central_h2_TotalE_CenterE, side_h2_TotalE_CenterE and ALL_h2_TotalE_CenterE",
+            "ALL_h2_TOF_TotalE",
+            "all15_cluster_size_vs_total_energy, all15_core_multiplicity and all15_high_core_multiplicity",
+            "h1_TrigList0 through h1_TrigList14",
+            "historical_h2_TOF_TotalE_Trig17,18,19,20,22",
+            "reviewed_h2_TOF_TotalE_Trig17,18,19,20,22"
+          ],
+          "terminal": true
+        }
+      ],
+      "portable_entries": [
+        "analysis/data_preprocessing/include/gamma_position.hpp",
+        "analysis/data_preprocessing/include/spatial_spread.hpp",
+        "analysis/data_preprocessing/include/chapter3_diagnostics.h",
+        "analysis/data_preprocessing/src/gamma_position.cxx",
+        "analysis/data_preprocessing/src/spatial_spread.cxx",
+        "analysis/data_preprocessing/src/chapter3_diagnostics.cxx",
+        "analysis/data_preprocessing/apps/build_chapter3_diagnostics.cxx",
+        "analysis/data_preprocessing/tests/test_chapter3_diagnostics.cxx",
+        "analysis/data_preprocessing/include/trigger_diagnostics.h",
+        "analysis/data_preprocessing/src/trigger_diagnostics.cxx",
+        "analysis/data_preprocessing/apps/build_trigger_diagnostics.cxx",
+        "analysis/data_preprocessing/tests/test_trigger_diagnostics.cxx",
+        "plotting/plot_trigger_tdc_distributions.py",
+        "plotting/plot_trigger_energy_time_correlations.py",
+        "tools/data_preprocessing.py",
+        "tools/tests/test_data_preprocessing_tool.py"
+      ],
+      "status": "code_migrated",
+      "thesis_outputs": [
+        "reconstruction-multiplicity",
+        "cshine-spatial-correlation-energy-intervals",
+        "cshine-energy-spatial-spread-correlations",
+        "cshine-core-total-energy-correlations",
+        "cshine-cosmic-muon-topology",
+        "cshine-energy-core-time",
+        "cshine-trigger-tdc-distributions",
+        "cshine-trigger-energy-time-correlations"
+      ],
+      "thesis_scope": "Secs. 3.3.4-3.4.1",
+      "title": "Produce the Chapter 3 diagnostic ROOT objects",
+      "unresolved": [
+        "M10A and M10B are code-migrated; the complete experimental samples have not been rerun",
+        "The adopted Fig. 15 records the historical central-veto implementation; the author-reviewed side-veto variant is stored separately and has not replaced the thesis figure",
+        "Event-display production and before/after reconstruction spectra are already traced to dedicated producers and are not generated by h2_check"
+      ]
+    },
+    {
+      "depends_on": [
+        "M9"
+      ],
+      "external_inputs": [
+        "reviewed slow- and fast-coincidence background definitions"
+      ],
+      "figure_outputs": [
+        "cshine-slow-background-subtraction-figure",
+        "cshine-fast-background-subtraction-figure"
+      ],
+      "historical_source_ids": [
+        "DP-S604",
+        "DP-S721",
+        "DP-S722",
+        "DP-S723",
+        "DP-S724",
+        "DP-S725"
+      ],
+      "id": "M11",
+      "inputs": [
+        "merged-reconstructed-events"
+      ],
+      "outputs": [
+        {
+          "id": "background-diagnostic-spectra",
+          "kind": "root-file",
+          "root_objects": [
+            "beam-on, beam-off, fast-window and random-window spectra"
+          ],
+          "terminal": true
+        },
+        {
+          "id": "central-observed-spectrum",
+          "kind": "root-histogram",
+          "root_objects": [
+            "spectrum_110.root:histDiff"
+          ],
+          "terminal": false
+        }
+      ],
+      "portable_entries": [
+        "analysis/data_preprocessing/include/fast_coincidence_spectra.h",
+        "analysis/data_preprocessing/src/fast_coincidence_spectra.cxx",
+        "analysis/data_preprocessing/apps/build_fast_coincidence_spectra.cxx",
+        "analysis/data_preprocessing/tests/test_fast_coincidence_spectra.cxx",
+        "analysis/data_preprocessing/include/observed_spectrum.h",
+        "analysis/data_preprocessing/src/observed_spectrum.cxx",
+        "analysis/data_preprocessing/apps/build_observed_spectrum.cxx",
+        "analysis/data_preprocessing/tests/test_observed_spectrum.cxx",
+        "tools/data_preprocessing.py",
+        "tools/tests/test_data_preprocessing_tool.py"
+      ],
+      "status": "code_migrated",
+      "thesis_outputs": [
+        "cshine-slow-background-subtraction-figure",
+        "cshine-fast-background-subtraction-figure",
+        "cshine-central-observed-spectrum"
+      ],
+      "thesis_scope": "Secs. 3.5-3.6",
+      "title": "Subtract backgrounds and form the measured spectrum",
+      "unresolved": [
+        "The portable producer and histogram arithmetic passed synthetic ROOT tests; the complete experimental samples have not been rerun"
+      ]
+    },
+    {
+      "depends_on": [
+        "M11"
+      ],
+      "external_inputs": [],
+      "figure_outputs": [],
+      "historical_source_ids": [
+        "DP-S604"
+      ],
+      "id": "M12",
+      "inputs": [
+        "central-observed-spectrum"
+      ],
+      "outputs": [
+        {
+          "id": "chapter3-observed-spectrum-interface",
+          "kind": "analysis-contract",
+          "root_objects": [
+            "spectrum_110.root:histDiff (TH1D; 200 bins; 0--200 MeV laboratory frame)"
+          ],
+          "terminal": false
+        }
+      ],
+      "portable_entries": [
+        "analysis/data_preprocessing/include/observed_spectrum.h",
+        "analysis/data_preprocessing/src/observed_spectrum.cxx",
+        "analysis/data_preprocessing/apps/inspect_observed_spectrum.cxx",
+        "analysis/data_preprocessing/tests/test_observed_spectrum_interface.cxx",
+        "analysis/data_preprocessing/M12_OBSERVED_SPECTRUM_INTERFACE_REVIEW.md"
+      ],
+      "status": "code_migrated",
+      "thesis_outputs": [],
+      "thesis_scope": "Sec. 3.6",
+      "title": "Freeze the detector-level observed-spectrum interface",
+      "unresolved": [
+        "The portable inspector has not been run on the complete experimental spectrum in this migration step"
+      ]
+    },
+    {
+      "depends_on": [
+        "M12"
+      ],
+      "external_inputs": [],
+      "figure_outputs": [],
+      "historical_source_ids": [
+        "DP-S409",
+        "DP-S604"
+      ],
+      "id": "M13",
+      "inputs": [
+        "chapter3-observed-spectrum-interface"
+      ],
+      "outputs": [
+        {
+          "id": "chapter3-reproduction-record",
+          "kind": "documentation-and-validation",
+          "root_objects": [],
+          "terminal": true
+        }
+      ],
+      "portable_entries": [
+        "REPRODUCE.md",
+        "LICENSE",
+        "CITATION.cff",
+        "docs/REPRODUCIBILITY_STATUS.md",
+        "tools/repository_closure.py",
+        "tools/tests/test_repository_closure.py",
+        "plotting/records/time-amplitude-csi05.json",
+        "plotting/records/time-amplitude-all.json",
+        "analysis/data_preprocessing/M13_REPOSITORY_CLOSURE_REVIEW.md"
+      ],
+      "status": "closed",
+      "thesis_outputs": [],
+      "thesis_scope": "Chapter 3",
+      "title": "Close the Chapter 3 reproducibility and public-boundary records",
+      "unresolved": [
+        "The M5 historical time-fit batch producer remains unavailable and is represented by an audited-artifact boundary"
+      ]
+    }
+  ]
+}

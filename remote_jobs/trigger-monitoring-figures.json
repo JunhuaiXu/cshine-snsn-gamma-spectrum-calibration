@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "job_id": "trigger-monitoring-figures",
+  "description": "Generate the trigger-TDC and trigger-conditioned energy/time figures in one remote session.",
+  "uploads": [
+    {
+      "local": "plotting/plot_trigger_tdc_distributions.py",
+      "remote_name": "plot_trigger_tdc_distributions.py"
+    },
+    {
+      "local": "plotting/plot_trigger_energy_time_correlations.py",
+      "remote_name": "plot_trigger_energy_time_correlations.py"
+    }
+  ],
+  "commands": [
+    [
+      "python3",
+      "-m",
+      "py_compile",
+      "{remote_code_dir}/plot_trigger_tdc_distributions.py",
+      "{remote_code_dir}/plot_trigger_energy_time_correlations.py"
+    ],
+    [
+      "python3",
+      "{remote_code_dir}/plot_trigger_tdc_distributions.py",
+      "--analysis-root",
+      "{analysis_root}",
+      "--output-dir",
+      "{run_output_dir}"
+    ],
+    [
+      "python3",
+      "{remote_code_dir}/plot_trigger_energy_time_correlations.py",
+      "--analysis-root",
+      "{analysis_root}",
+      "--output-dir",
+      "{run_output_dir}"
+    ]
+  ],
+  "outputs": [
+    "trigger_tdc_distributions/cshine_gamma_trigger_tdc_distributions.pdf",
+    "trigger_tdc_distributions/cshine_gamma_trigger_tdc_distributions.png",
+    "trigger_tdc_distributions/cshine_gamma_trigger_tdc_distributions.json",
+    "trigger_energy_time_correlations/cshine_gamma_trigger_energy_time_correlations.pdf",
+    "trigger_energy_time_correlations/cshine_gamma_trigger_energy_time_correlations.png",
+    "trigger_energy_time_correlations/cshine_gamma_trigger_energy_time_correlations.json"
+  ]
+}

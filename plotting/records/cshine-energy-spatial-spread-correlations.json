@@ -1,0 +1,163 @@
+{
+  "author_decision": {
+    "date": "2026-08-10",
+    "notes": "The author downloaded the server redraw and explicitly requested its integration into thesis Sec. 3.4.1.",
+    "status": "confirmed"
+  },
+  "candidate": {
+    "artifacts": [
+      {
+        "path": "results/figures/energy_spatial_spread_correlations/cshine_gamma_energy_spatial_spread_correlations_horizontal.pdf",
+        "role": "pdf",
+        "sha256": "0521814a91ebaa9c2317f13e2d392ae8f226b20f2e1efe9adca2a45153064002",
+        "size_bytes": 630939
+      }
+    ],
+    "status": "generated"
+  },
+  "created_utc": "2026-08-10T21:00:00Z",
+  "figure_class": "reproducible_redraw",
+  "historical": {
+    "historical_outputs": [
+      {
+        "path": "analysis-note/figures/delta_Etot.pdf",
+        "role": "manually assembled reference figure",
+        "sha256": "0e70234bc53355d3607a41a2014deae38fe1e808d27de4b43088e7621a38750e",
+        "size_bytes": 174452
+      }
+    ],
+    "input_objects": [
+      "h2_check.root:ALL_h2_TotalE_DeltaY",
+      "h2_check.root:ALL_h2_TotalE_Delta"
+    ],
+    "publication_or_note_figure": "Analysis-note Fig. 11; identical PRC supplementary delta_Etot figure",
+    "source_files": [
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/h2_check.C",
+        "sha256": "d2870f286774c24f878b9eccdb7e9c2da1f3beecc1379a29aab91f321286096e"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/Drawhistos.C",
+        "sha256": "9302e43a298451a55d7f5964c3909349a7d9573c3d694bf79ded27cc2d54444e"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/get_ax_ay.hh",
+        "sha256": "2f38bde0d3ff6b61ac340c53e96573e117abea2b3354421d9f654846aef625ce"
+      }
+    ],
+    "status": "source_frozen"
+  },
+  "physics_contract": {
+    "binning": [
+      "panel (a): 50 x 70 bins over E_tot=5--200 MeV and delta_y=0--7 cm",
+      "panel (b): 50 x 70 bins over E_tot=0--200 MeV and delta_r=0--7 cm"
+    ],
+    "display_policy": [
+      "horizontal two-panel layout in analysis-note panel order",
+      "complete axes and an independent logarithmic count color scale in each panel",
+      "panel labels at upper left",
+      "zero-count bins masked; positive in-range counts unchanged",
+      "underflow and overflow recorded but not drawn"
+    ],
+    "fit_or_transform": "get_ax_ay computes energy-weighted mean absolute grid displacement; h2_check.C multiplies delta_x and delta_y by the 7 cm pitch and defines delta_r=sqrt(delta_x^2+delta_y^2)",
+    "inputs": [
+      "DataPreprocessing/step7-DeltaYrelated/h2_check.root",
+      "ALL_h2_TotalE_DeltaY",
+      "ALL_h2_TotalE_Delta"
+    ],
+    "normalization": "none",
+    "sample": "Reconstructed candidates from the fixed 60-file March 4--10 GammaCaliData sample. Accepted cores are central units 5, 6, 9, 10 and side units 4, 7, 8, 11, 13, 14; count_veto == 0 is required for side cores.",
+    "selections": [
+      "no local-multiplicity requirement for the two ALL_h2 source objects",
+      "the two panels use the same accepted-candidate sample but retain different historical E_tot axis minima"
+    ],
+    "status": "frozen",
+    "variables": [
+      "E_tot = sum_i E_i [MeV]",
+      "delta_y = sum_i E_i |y_i-ybar| / E_tot [cm]",
+      "delta_r = sqrt(delta_x^2+delta_y^2) [cm]"
+    ]
+  },
+  "portable": {
+    "command": "python3 plotting/plot_energy_spatial_spread_correlations.py --analysis-root /path/to/gamma2024 --output-dir results/figures",
+    "minimum_python": "3.6",
+    "preserved_root_sources": [
+      "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/h2_check.C",
+      "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/Drawhistos.C",
+      "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/get_ax_ay.hh"
+    ],
+    "python_entries": [
+      "plotting/plot_energy_spatial_spread_correlations.py"
+    ],
+    "root_entries": [
+      "plotting/root/draw_energy_spatial_spread_correlations.C"
+    ],
+    "status": "implemented"
+  },
+  "public_boundary": {
+    "contains_private_paths": false,
+    "internal_path_reference": "../../../DATA_PATHS.md",
+    "notes": "Experimental data and generated binary outputs are not distributed."
+  },
+  "schema_version": 1,
+  "stable_id": "cshine-energy-spatial-spread-correlations",
+  "thesis": {
+    "adopted_artifacts": [
+      {
+        "path": "thesis-assets/03_cshine_experiment/cshine_gamma_energy_spatial_spread_correlations.pdf",
+        "recorded_utc": "2026-08-10T21:53:20Z",
+        "role": "pdf",
+        "sha256": "0521814a91ebaa9c2317f13e2d392ae8f226b20f2e1efe9adca2a45153064002",
+        "size_bytes": 630939
+      }
+    ],
+    "label": "fig:cshine-gamma-energy-spatial-spread-correlations",
+    "section": "Sec. 3.4.1",
+    "status": "used"
+  },
+  "title": "Total reconstructed energy versus vertical and overall spatial spread",
+  "updated_utc": "2026-08-10T21:53:20Z",
+  "validation": {
+    "checks": [
+      "Python syntax check passed",
+      "horizontal layout passed a local synthetic-array check without requiring ROOT",
+      "runtime preflight fixes both object names, dimensions, distinct energy ranges, non-negative bins, and non-empty inputs",
+      "real-data run read the two frozen ROOT objects without rebinning or normalization",
+      "the downloaded PDF was copied unchanged into the thesis assets and its checksum was preserved"
+    ],
+    "notes": "The real-data object check established the entries and displayed-bin counts used for the redraw. The author-confirmed PDF preserves the frozen object definitions, historical ranges, binning, normalization, and independent logarithmic color scales. A separate enhanced axis-by-axis flow metadata file was not archived locally and is not claimed here.",
+    "records": [
+      {
+        "command": "python3 -m py_compile plotting/plot_energy_spatial_spread_correlations.py",
+        "result": "passed",
+        "type": "syntax"
+      },
+      {
+        "input": "synthetic arrays with the historical 5--200 MeV and 0--200 MeV x ranges",
+        "result": "PDF and PNG created successfully outside the repository",
+        "type": "presentation-layout"
+      },
+      {
+        "input_sha256": "3b43dc8ffd86a346636f7f41c4045922c07b8f7916a5fa20cdf3ab3c2effb8be",
+        "objects": {
+          "ALL_h2_TotalE_Delta": {
+            "entries": 16093168,
+            "in_range_counts": 16092897,
+            "including_underflow_overflow": 16093168,
+            "outside_displayed_range": 271
+          },
+          "ALL_h2_TotalE_DeltaY": {
+            "entries": 16093168,
+            "in_range_counts": 2199688,
+            "including_underflow_overflow": 16093168,
+            "outside_displayed_range": 13893480
+          }
+        },
+        "result": "real-data object and displayed-bin count check passed",
+        "software": "Python 3.6.9; ROOT 6.28/04; NumPy 1.19.5; Matplotlib 3.3.4",
+        "type": "real-data-object-check"
+      }
+    ],
+    "status": "real_data_checked"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "job_id": "event-display-reproduction",
+  "description": "Reproduce the frozen gamma-ray and cosmic-muon event displays, validate them against the historical ROOT outputs, and render a horizontal two-panel candidate.",
+  "uploads": [
+    {
+      "local": "analysis/data_preprocessing/validation/build_event_display_records.cxx",
+      "remote_name": "build_event_display_records.cxx"
+    },
+    {
+      "local": "analysis/data_preprocessing/validation/validate_event_display_records.cxx",
+      "remote_name": "validate_event_display_records.cxx"
+    },
+    {
+      "local": "plotting/root/draw_event_display_horizontal.C",
+      "remote_name": "draw_event_display_horizontal.C"
+    }
+  ],
+  "commands": [
+    [
+      "bash",
+      "-lc",
+      "g++ -std=c++11 -O2 -Wall -Wextra -Wpedantic -I'{analysis_root}/DataPreprocessing/t_gamma_cali' '{remote_code_dir}/build_event_display_records.cxx' -o '{remote_code_dir}/build_event_display_records' $(root-config --cflags --libs)"
+    ],
+    [
+      "bash",
+      "-lc",
+      "g++ -std=c++11 -O2 -Wall -Wextra -Wpedantic '{remote_code_dir}/validate_event_display_records.cxx' -o '{remote_code_dir}/validate_event_display_records' $(root-config --cflags --libs)"
+    ],
+    [
+      "{remote_code_dir}/build_event_display_records",
+      "{analysis_root}",
+      "{run_output_dir}/event_display/event_display_records.root",
+      "{run_output_dir}/event_display/event_display_selection.tsv"
+    ],
+    [
+      "{remote_code_dir}/validate_event_display_records",
+      "{run_output_dir}/event_display/event_display_records.root",
+      "{analysis_root}/EventDisplay/EventALL/lego_0.root",
+      "{analysis_root}/EventDisplay/lego_5.root",
+      "{run_output_dir}/event_display/event_display_validation.tsv"
+    ],
+    [
+      "root",
+      "-l",
+      "-b",
+      "-q",
+      "{remote_code_dir}/draw_event_display_horizontal.C(\"{run_output_dir}/event_display/event_display_records.root\",\"{run_output_dir}/event_display\",false)"
+    ]
+  ],
+  "outputs": [
+    "event_display/event_display_records.root",
+    "event_display/event_display_selection.tsv",
+    "event_display/event_display_validation.tsv",
+    "event_display/cshine_gamma_event_display_horizontal.pdf",
+    "event_display/cshine_gamma_event_display_horizontal.png"
+  ]
+}

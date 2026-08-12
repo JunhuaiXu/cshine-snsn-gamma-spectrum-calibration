@@ -1,0 +1,141 @@
+{
+  "author_decision": {
+    "date": "2026-08-11",
+    "notes": "The author requested that the completed redraw replace the thesis figure after the real-data run.",
+    "status": "confirmed"
+  },
+  "candidate": {
+    "artifacts": [
+      {
+        "path": "results/remote_runs/central-edge-spectrum-consistency/20260811T172538Z/central_edge_spectrum_consistency/cshine_gamma_central_edge_spectrum_consistency_horizontal.pdf",
+        "recorded_utc": "2026-08-11T17:26:08Z",
+        "role": "validated horizontal PDF",
+        "sha256": "15240c6470992ef46498885f352f8c060e679d740e36e66f4332b39e2f242d44",
+        "size_bytes": 619836
+      },
+      {
+        "path": "results/remote_runs/central-edge-spectrum-consistency/20260811T172538Z/central_edge_spectrum_consistency/cshine_gamma_central_edge_spectrum_consistency_horizontal.json",
+        "recorded_utc": "2026-08-11T17:26:08Z",
+        "role": "real-data validation metadata",
+        "sha256": "5dbdb8f4f785caf96d1f5b12b06db3d7f2ca7b47c77f26900ae3f30d01c064bb",
+        "size_bytes": 8007
+      }
+    ],
+    "status": "generated"
+  },
+  "created_utc": "2026-08-11T17:13:49Z",
+  "figure_class": "reproducible_redraw",
+  "historical": {
+    "historical_outputs": [
+      {
+        "path": "../../../01_chapter_assets/05_src_measurement/references/01_published_work/PRC_SnSn_gamma_SRC/E_M1_signal_minus_background_combined.pdf",
+        "sha256": "7470606a1f0ea8985ea7f780a353cb28f25eab11d01446181e1c20024a347ef6"
+      }
+    ],
+    "input_objects": [
+      "all_recon.root:h_central_E_M1",
+      "all_recon.root:h_side_E_M1",
+      "all_recon.root:h_total_E_M1",
+      "all_recon_BKG.root:h_central_E_M1",
+      "all_recon_BKG.root:h_side_E_M1",
+      "all_recon_BKG.root:h_total_E_M1"
+    ],
+    "publication_or_note_figure": "PRC supplementary and analysis-note central/edge spectrum comparison",
+    "source_files": [
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step4-convert.0308.PreRun/MoreFigs/SpecCompare.ipynb",
+        "sha256": "a65dbf35ff854fcbbb63c73f7b8bc2cd481392e3163cdd368c3f43d9481d84ea"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step4-convert.0308.PreRun/all_recon.C",
+        "sha256": "bbea45151526a9d964adf76d8911e10b5ea139a9c3a80e89f1c705b302176209"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step4-convert.0308.PreRun/all_recon_BKG.C",
+        "sha256": "8cd1aad63ba7f83ea3e88462387987371ffb23ea79c93e86043dd1e5e5802478"
+      }
+    ],
+    "status": "source_frozen"
+  },
+  "physics_contract": {
+    "binning": [
+      "Source histograms: 1000 bins over 0--200 MeV",
+      "Displayed spectra: factor-five rebinning to 1 MeV"
+    ],
+    "display_policy": [
+      "Horizontal two-panel layout",
+      "Logarithmic count axes",
+      "No error bars, matching the historical figure",
+      "Display range 0--100 MeV"
+    ],
+    "fit_or_transform": "Independent beam-off subtraction for each spectrum, followed by a presentation-only scale to the total-spectrum integral for the shape comparison.",
+    "inputs": [
+      "March 8 published-figure beam-on reconstructed spectra",
+      "March 8 published-figure beam-off reconstructed spectra"
+    ],
+    "normalization": "For each spectrum, scale beam-off to beam-on using the inclusive ROOT bins FindBin(110) through FindBin(200), then subtract. For the second panel, scale each difference to the total-spectrum integral over inclusive ROOT bins FindBin(35) through FindBin(100).",
+    "sample": "Reconstructed gamma-ray candidates with central cores 5, 6, 9, 10 and edge cores 4, 7, 8, 11, 13, 14; the historical producers use no plastic-veto requirement for central cores and the three-sided plastic-veto condition for edge cores.",
+    "selections": [
+      "Central-core spectrum from four central CsI(Tl) units",
+      "Edge-core spectrum from six side CsI(Tl) units with the three-sided plastic-veto condition",
+      "Total spectrum is the central-plus-edge sum before background subtraction"
+    ],
+    "status": "frozen",
+    "variables": [
+      "Reconstructed total gamma-ray energy E_tot",
+      "Central, edge, and combined event categories"
+    ]
+  },
+  "portable": {
+    "command": "python3 tools/remote_figure.py run central-edge-spectrum-consistency",
+    "minimum_python": "3.6",
+    "preserved_root_sources": [
+      "../gamma2024_code_snapshot/DataPreprocessing/step4-convert.0308.PreRun/MoreFigs/SpecCompare.ipynb",
+      "../gamma2024_code_snapshot/DataPreprocessing/step4-convert.0308.PreRun/all_recon.C",
+      "../gamma2024_code_snapshot/DataPreprocessing/step4-convert.0308.PreRun/all_recon_BKG.C"
+    ],
+    "python_entries": [
+      "plotting/plot_central_edge_spectrum_consistency.py"
+    ],
+    "root_entries": [
+      "plotting/root/draw_central_edge_spectrum_consistency.C"
+    ],
+    "status": "checked"
+  },
+  "public_boundary": {
+    "contains_private_paths": false,
+    "internal_path_reference": "../../../DATA_PATHS.md",
+    "notes": "Experimental data and generated binary outputs are not distributed."
+  },
+  "schema_version": 1,
+  "stable_id": "cshine-central-edge-spectrum-consistency",
+  "thesis": {
+    "adopted_artifacts": [
+      {
+        "path": "../../../01_chapter_assets/03_cshine_experiment/figures/03_final/cshine_gamma_central_edge_spectrum_consistency.pdf",
+        "recorded_utc": "2026-08-11T17:31:00Z",
+        "role": "adopted thesis PDF",
+        "sha256": "15240c6470992ef46498885f352f8c060e679d740e36e66f4332b39e2f242d44",
+        "size_bytes": 619836
+      }
+    ],
+    "label": "fig:cshine-gamma-central-edge-spectrum-consistency",
+    "section": "Sec. 3.6.2",
+    "status": "final"
+  },
+  "title": "Central, edge, and combined reconstructed spectra",
+  "updated_utc": "2026-08-11T17:31:00Z",
+  "validation": {
+    "checks": [
+      "Compare every regular and flow-bin content and uncertainty against the focused ROOT reference",
+      "Compare published-figure and central-analysis ROOT inputs object by object",
+      "Record input, reference, and candidate SHA-256 values"
+    ],
+    "notes": "The published-figure .0308.PreRun inputs and central .0308 inputs are identical in all six object contents and uncertainties. Python and focused ROOT outputs agree in every regular and flow-bin content and uncertainty for all subtracted and normalized spectra.",
+    "records": [
+      "results/remote_runs/central-edge-spectrum-consistency/20260811T172538Z/remote_workflow.json",
+      "results/remote_runs/central-edge-spectrum-consistency/20260811T172538Z/central_edge_spectrum_consistency/cshine_gamma_central_edge_spectrum_consistency_horizontal.json"
+    ],
+    "status": "numerically_validated"
+  }
+}

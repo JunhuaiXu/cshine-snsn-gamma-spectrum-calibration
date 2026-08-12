@@ -1,0 +1,85 @@
+{
+  "author_decision": {
+    "date": "2026-08-06",
+    "notes": "The author approved the shared-scale real-data redraw for thesis Sec. 3.3.1.",
+    "status": "confirmed"
+  },
+  "candidate": {
+    "artifacts": [
+      {
+        "path": "results/figures/time_walk/individual/cshine_gamma_time_amplitude_correction_CsI05_horizontal.pdf",
+        "role": "pdf",
+        "sha256": "aab655a15b199b3624edf1b2522d61df4a33d543c82bda5b36f23eac2eaf1f23",
+        "size_bytes": 1110937
+      }
+    ],
+    "status": "generated"
+  },
+  "created_utc": "2026-08-11T00:00:00Z",
+  "figure_class": "reproducible_redraw",
+  "historical": {
+    "historical_outputs": [],
+    "input_objects": ["Canvas_1 TH2 count histogram", "f_05.out fit parameters"],
+    "publication_or_note_figure": "Analysis-note Fig. 3 representative channel",
+    "source_files": [
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step3-time/DrawRebin.ipynb",
+        "sha256": "862656569a9891278880b4a4c253882b1b4d44ecc8d5a61331684f7032734541"
+      }
+    ],
+    "status": "source_frozen"
+  },
+  "physics_contract": {
+    "binning": ["Historical two-dimensional histogram cropped and summed in 16 x 16 cells before correction"],
+    "display_policy": ["horizontal before/after layout", "one shared logarithmic count scale", "no count normalization"],
+    "fit_or_transform": "Apply the frozen reciprocal time-amplitude correction cell by cell and re-histogram the corrected time coordinate.",
+    "inputs": ["One authorized CsI05 ROOT/parameter pair from the frozen historical fit-output set"],
+    "normalization": "none",
+    "sample": "The reviewed March 4--10 GammaCaliData sample represented by the surviving CsI05 historical fit outputs.",
+    "selections": ["Use the historical TH2 object selected from Canvas_1 and the corresponding frozen CsI05 fit parameters"],
+    "status": "frozen",
+    "variables": ["low-gain ADC-E address", "uncorrected detector time", "corrected gamma time", "bin counts"]
+  },
+  "portable": {
+    "command": "python3 plotting/plot_time_amplitude_correction.py --analysis-root /path/to/gamma2024 --crystal-index 5 --output-dir results/figures",
+    "minimum_python": "3.6",
+    "preserved_root_sources": ["../gamma2024_code_snapshot/DataPreprocessing/step3-time/DrawRebin.ipynb"],
+    "python_entries": ["plotting/plot_time_amplitude_correction.py"],
+    "root_entries": [],
+    "status": "implemented"
+  },
+  "public_boundary": {
+    "contains_private_paths": false,
+    "internal_path_reference": "../../../DATA_PATHS.md",
+    "notes": "Experimental ROOT files, fit artifacts, and generated binary outputs are not distributed."
+  },
+  "schema_version": 1,
+  "stable_id": "time-amplitude-csi05",
+  "thesis": {
+    "adopted_artifacts": [
+      {
+        "path": "thesis-assets/03_cshine_experiment/cshine_gamma_time_walk_csi05_shared_scale.pdf",
+        "role": "pdf",
+        "sha256": "aab655a15b199b3624edf1b2522d61df4a33d543c82bda5b36f23eac2eaf1f23",
+        "size_bytes": 1110937
+      }
+    ],
+    "label": "fig:cshine-gamma-time-walk-csi05",
+    "section": "Sec. 3.3.1",
+    "status": "used"
+  },
+  "title": "CsI05 time-amplitude correlation before and after correction",
+  "updated_utc": "2026-08-11T00:00:00Z",
+  "validation": {
+    "checks": [
+      "The numerical operations were traced to the frozen DrawRebin notebook.",
+      "The authorized all-channel run conserved counts through rebinning and corrected-time re-histogramming.",
+      "The adopted PDF checksum equals the approved candidate checksum."
+    ],
+    "notes": "The approved run used Python 3.6.9, ROOT 6.28/04, NumPy 1.17.4, and Matplotlib 3.3.1.",
+    "records": [
+      {"result": "passed", "type": "real-data-count-conservation-and-checksum"}
+    ],
+    "status": "real_data_checked"
+  }
+}

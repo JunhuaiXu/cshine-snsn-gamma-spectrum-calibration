@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "job_id": "central-edge-spectrum-consistency",
+  "description": "Reconstruct, validate, and redraw the central, edge, and combined background-subtracted spectra used for the spectrum-shape consistency check.",
+  "uploads": [
+    {
+      "local": "plotting/plot_central_edge_spectrum_consistency.py",
+      "remote_name": "plot_central_edge_spectrum_consistency.py"
+    },
+    {
+      "local": "plotting/root/draw_central_edge_spectrum_consistency.C",
+      "remote_name": "draw_central_edge_spectrum_consistency.C"
+    }
+  ],
+  "commands": [
+    [
+      "python3",
+      "-m",
+      "py_compile",
+      "{remote_code_dir}/plot_central_edge_spectrum_consistency.py"
+    ],
+    [
+      "root",
+      "-l",
+      "-b",
+      "-q",
+      "{remote_code_dir}/draw_central_edge_spectrum_consistency.C(\"{analysis_root}\",\"{run_output_dir}\",false)"
+    ],
+    [
+      "python3",
+      "{remote_code_dir}/plot_central_edge_spectrum_consistency.py",
+      "--analysis-root",
+      "{analysis_root}",
+      "--reference-root",
+      "{run_output_dir}/central_edge_spectrum_consistency/cshine_gamma_central_edge_spectrum_consistency_root_reference.root",
+      "--output-dir",
+      "{run_output_dir}"
+    ]
+  ],
+  "outputs": [
+    "central_edge_spectrum_consistency/cshine_gamma_central_edge_spectrum_consistency_root_reference.root",
+    "central_edge_spectrum_consistency/cshine_gamma_central_edge_spectrum_consistency_root_reference.pdf",
+    "central_edge_spectrum_consistency/cshine_gamma_central_edge_spectrum_consistency_root_reference.png",
+    "central_edge_spectrum_consistency/cshine_gamma_central_edge_spectrum_consistency_horizontal.pdf",
+    "central_edge_spectrum_consistency/cshine_gamma_central_edge_spectrum_consistency_horizontal.png",
+    "central_edge_spectrum_consistency/cshine_gamma_central_edge_spectrum_consistency_horizontal.json"
+  ]
+}

@@ -1,0 +1,184 @@
+cff-version: 1.2.0
+message: "If you use this software, please identify the software commit and cite both associated Physical Review C and Physical Review Research articles."
+title: "CSHINE Sn+Sn Gamma-Spectrum Calibration and Reconstruction"
+type: software
+license: BSD-3-Clause
+repository-code: "https://github.com/JunhuaiXu/cshine-snsn-gamma-spectrum-calibration"
+authors:
+  - family-names: Xu
+    given-names: Junhuai
+    orcid: "https://orcid.org/0000-0001-7529-8786"
+keywords:
+  - CSHINE
+  - gamma-ray spectrum
+  - detector calibration
+  - event reconstruction
+  - heavy-ion collision
+preferred-citation:
+  type: article
+  title: "Experimental Study of Bremsstrahlung Gamma-Ray Emission and Short-Range Correlations in 124Sn+124Sn Collisions at 25 MeV/Nucleon"
+  authors:
+    - family-names: Xu
+      given-names: Junhuai
+      orcid: "https://orcid.org/0000-0001-7529-8786"
+    - family-names: Niu
+      given-names: Qinglin
+    - family-names: Qin
+      given-names: Yuhao
+    - family-names: Si
+      given-names: Dawei
+    - family-names: Wang
+      given-names: Yijie
+    - family-names: Xiao
+      given-names: Sheng
+    - family-names: Tian
+      given-names: Baiting
+    - family-names: Qin
+      given-names: Zhi
+    - family-names: Zhang
+      given-names: Haojie
+    - family-names: Zhang
+      given-names: Boyuan
+    - family-names: Guo
+      given-names: Dong
+    - family-names: Fu
+      given-names: Minxue
+    - family-names: Wei
+      given-names: Xiaobao
+    - family-names: Hao
+      given-names: Yibo
+    - family-names: Wang
+      given-names: Zengxiang
+    - family-names: Zhuo
+      given-names: Tianren
+    - family-names: Ma
+      given-names: Chunwang
+    - family-names: Yang
+      given-names: Yuansheng
+    - family-names: Wei
+      given-names: Xianglun
+    - family-names: Yang
+      given-names: Herun
+    - family-names: Ma
+      given-names: Peng
+    - family-names: Duan
+      given-names: Limin
+    - family-names: Duan
+      given-names: Fangfang
+    - family-names: Wang
+      given-names: Kang
+    - family-names: Ma
+      given-names: Junbing
+    - family-names: Xu
+      given-names: Shiwei
+    - family-names: Bai
+      given-names: Zhen
+    - family-names: Yang
+      given-names: Guo
+    - family-names: Yang
+      given-names: Yanyun
+    - family-names: Xu
+      given-names: Mengke
+    - family-names: Chen
+      given-names: Kaijie
+    - family-names: Hao
+      given-names: Zirui
+    - family-names: Fan
+      given-names: Gongtao
+    - family-names: Wang
+      given-names: Hongwei
+    - family-names: Xu
+      given-names: Chang
+    - family-names: Xiao
+      given-names: Zhigang
+  doi: "10.1103/dhz2-nl56"
+  journal: "Physical Review C"
+  issue: "4"
+  start: "044613"
+  volume: "113"
+  year: 2026
+  url: "https://doi.org/10.1103/dhz2-nl56"
+references:
+  - type: article
+    title: "Precise Measurement of Short-Range Correlations in Nuclei from Bremsstrahlung Gamma-Ray Emission in Low-Energy Heavy-Ion Collisions"
+    authors:
+      - family-names: Xu
+        given-names: Junhuai
+        orcid: "https://orcid.org/0000-0001-7529-8786"
+      - family-names: Niu
+        given-names: Qinglin
+      - family-names: Qin
+        given-names: Yuhao
+      - family-names: Si
+        given-names: Dawei
+      - family-names: Wang
+        given-names: Yijie
+      - family-names: Xiao
+        given-names: Sheng
+      - family-names: Tian
+        given-names: Baiting
+      - family-names: Qin
+        given-names: Zhi
+      - family-names: Zhang
+        given-names: Haojie
+      - family-names: Zhang
+        given-names: Boyuan
+      - family-names: Guo
+        given-names: Dong
+      - family-names: Fu
+        given-names: Minxue
+      - family-names: Wei
+        given-names: Xiaobao
+      - family-names: Hao
+        given-names: Yibo
+      - family-names: Wang
+        given-names: Zengxiang
+      - family-names: Zhuo
+        given-names: Tianren
+      - family-names: Ma
+        given-names: Chunwang
+      - family-names: Yang
+        given-names: Yuansheng
+      - family-names: Wei
+        given-names: Xianglun
+      - family-names: Yang
+        given-names: Herun
+      - family-names: Ma
+        given-names: Peng
+      - family-names: Duan
+        given-names: Limin
+      - family-names: Duan
+        given-names: Fangfang
+      - family-names: Wang
+        given-names: Kang
+      - family-names: Ma
+        given-names: Junbing
+      - family-names: Xu
+        given-names: Shiwei
+      - family-names: Bai
+        given-names: Zhen
+      - family-names: Yang
+        given-names: Guo
+      - family-names: Yang
+        given-names: Yanyun
+      - family-names: Xu
+        given-names: Mengke
+      - family-names: Chen
+        given-names: Kaijie
+      - family-names: Hao
+        given-names: Zirui
+      - family-names: Fan
+        given-names: Gongtao
+      - family-names: Wang
+        given-names: Hongwei
+      - family-names: Xu
+        given-names: Chang
+      - family-names: Xiao
+        given-names: Zhigang
+    doi: "10.1103/jw1p-36pb"
+    journal: "Physical Review Research"
+    issue: "4"
+    start: "043174"
+    volume: "7"
+    year: 2025
+    url: "https://doi.org/10.1103/jw1p-36pb"

@@ -1,0 +1,189 @@
+{
+  "author_decision": {
+    "date": "2026-08-10",
+    "notes": "The author approved the revised two-row, three-column output for thesis integration on 2026-08-10. The downloaded PDF was copied unchanged into the final chapter-figure directory.",
+    "status": "confirmed"
+  },
+  "candidate": {
+    "artifacts": [
+      {
+        "path": "results/figures/trigger_tdc_distributions/cshine_gamma_trigger_tdc_distributions.pdf",
+        "role": "author-approved two-row, three-column vector output",
+        "sha256": "fb5ec51dd9081d4e4faf1b7714a334a273975e9b9152f1cc1c46228637ab7206",
+        "size_bytes": 655435
+      },
+      {
+        "path": "results/figures/trigger_tdc_distributions/cshine_gamma_trigger_tdc_distributions.png",
+        "role": "two-row, three-column rendered candidate",
+        "sha256": "7967f9c5af27e87954df9a13fda88b8ea656de068baea42572c2a199dc8d7498",
+        "size_bytes": 148779
+      },
+      {
+        "path": "results/figures/trigger_tdc_distributions/cshine_gamma_trigger_tdc_distributions.json",
+        "role": "two-row, three-column real-data validation record",
+        "sha256": "aafe849bd497d64e8b7571afb56e54ef0ed684793167b812fa46908cf256c97d",
+        "size_bytes": 6177
+      }
+    ],
+    "status": "generated"
+  },
+  "created_utc": "2026-08-10T23:01:24Z",
+  "figure_class": "reproducible_redraw",
+  "historical": {
+    "historical_outputs": [
+      {
+        "path": "analysis-note/figures/h_trig_all.pdf",
+        "role": "analysis-note and PRC-supplement six-panel figure",
+        "sha256": "ea5a4c30bd5c70c57fd326674310a3eff9ab3b0ec8bca4219abb10e5f434d9c6",
+        "size_bytes": 791198
+      }
+    ],
+    "input_objects": [
+      "h2_check.root:h1_TrigList1",
+      "h2_check.root:h1_TrigList2",
+      "h2_check.root:h1_TrigList3",
+      "h2_check.root:h1_TrigList4",
+      "h2_check.root:h1_TrigList6",
+      "h2_check.root:h1_TrigList0"
+    ],
+    "publication_or_note_figure": "Analysis-note Fig. 14; PRC supplementary trigger-TDC figure",
+    "source_files": [
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step8-TimeCheck/step6-TimeWalkPlot/step7-DeltaYrelated/checkTrig.C",
+        "sha256": "418620f294bd0acafaa0ce99e495f9571f6ec141eaa7c8e2c3c06de982aef182"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step8-TimeCheck/step6-TimeWalkPlot/step7-DeltaYrelated/Drawhistos.C",
+        "sha256": "3b7879ca75eb1c7625b53fcad6cefed89ede0a63334e393f1f72e1338edafb9a"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step8-TimeCheck/step6-TimeWalkPlot/step7-DeltaYrelated/TriggerTDC.ipynb",
+        "sha256": "4471c56785421b81d41b9cddd9b38e2c65181550ee0b4640eba10bbb030eab6e"
+      }
+    ],
+    "status": "source_frozen"
+  },
+  "physics_contract": {
+    "binning": [
+      "each h1_TrigList object has 4096 bins over TDC channels 0--4096"
+    ],
+    "display_policy": [
+      "two-row, three-column panel order h1_TrigList1, 2, 3, 4, 6, 0",
+      "shared logarithmic count range 1--1e8",
+      "panel letters at upper left and trigger labels at the data-free upper-right region",
+      "underflow and overflow recorded but not drawn"
+    ],
+    "fit_or_transform": "none; the ROOT producer copies the hardware TDC array upstream and fills the six retained histograms directly",
+    "inputs": [
+      "DataPreprocessing/step8-TimeCheck/step6-TimeWalkPlot/step7-DeltaYrelated/h2_check.root",
+      "h1_TrigList1, h1_TrigList2, h1_TrigList3, h1_TrigList4, h1_TrigList6, h1_TrigList0"
+    ],
+    "normalization": "none",
+    "sample": "Fixed March 4--10 GammaCaliData sample used by the historical time-walk and trigger-monitoring check.",
+    "selections": [
+      "100 < TDC_Gamma_Trig_list[index] < 4000",
+      "no energy, reconstructed-core, time-window, or veto selection is applied to these trigger-monitor histograms",
+      "h1_TrigList5 is omitted because the independent SSD M1 & LS monitoring TDC signal was not recorded"
+    ],
+    "status": "frozen",
+    "variables": [
+      "panel (a): TDC_Gamma_Trig_list[17], SSD M1 & CsI M1",
+      "panel (b): TDC_Gamma_Trig_list[18], SSD M2",
+      "panel (c): TDC_Gamma_Trig_list[19], SSD M1 & NA M1",
+      "panel (d): TDC_Gamma_Trig_list[20], NA M1 & T0",
+      "panel (e): TDC_Gamma_Trig_list[22], LS & T0",
+      "panel (f): TDC_Gamma_Trig_list[16], ALL_OR global trigger"
+    ]
+  },
+  "portable": {
+    "command": "python3 plotting/plot_trigger_tdc_distributions.py --portable-root /path/to/trigger_diagnostics.root --output-dir results/figures",
+    "minimum_python": "3.6",
+    "preserved_root_sources": [
+      "../gamma2024_code_snapshot/DataPreprocessing/step8-TimeCheck/step6-TimeWalkPlot/step7-DeltaYrelated/checkTrig.C",
+      "../gamma2024_code_snapshot/DataPreprocessing/step8-TimeCheck/step6-TimeWalkPlot/step7-DeltaYrelated/Drawhistos.C"
+    ],
+    "python_entries": [
+      "plotting/plot_trigger_tdc_distributions.py"
+    ],
+    "root_entries": [
+      "plotting/root/draw_trigger_tdc_distributions.C"
+    ],
+    "status": "checked"
+  },
+  "public_boundary": {
+    "contains_private_paths": false,
+    "internal_path_reference": "../../../DATA_PATHS.md",
+    "notes": "Experimental data and generated binary outputs are not distributed."
+  },
+  "schema_version": 1,
+  "stable_id": "cshine-trigger-tdc-distributions",
+  "thesis": {
+    "adopted_artifacts": [
+      {
+        "path": "01_chapter_assets/03_cshine_experiment/figures/03_final/cshine_gamma_trigger_tdc_distributions.pdf",
+        "role": "thesis final figure",
+        "sha256": "fb5ec51dd9081d4e4faf1b7714a334a273975e9b9152f1cc1c46228637ab7206",
+        "size_bytes": 655435
+      }
+    ],
+    "label": "fig:cshine-trigger-tdc-distributions",
+    "section": "Sec. 3.3.4",
+    "status": "used"
+  },
+  "title": "TDC-channel distributions for monitored trigger conditions",
+  "updated_utc": "2026-08-11T04:11:26Z",
+  "validation": {
+    "checks": [
+      "analysis-note and PRC-supplement PDFs were verified byte-identical",
+      "historical object names, branch indices, panel order, valid-TDC selection, binning, and normalization were frozen by source inspection",
+      "portable Python syntax, command entry, and six-panel annotation layout were checked locally; the revised two-row, three-column layout was also checked with synthetic inputs",
+      "the portable reader checks that the predefined upper-right annotation regions remain free of large spectral structures",
+      "the authorized-server run verified all six 4096-bin ROOT objects, entries, in-range counts, peak positions, and zero flow counts",
+      "the revised two-row, three-column program was rerun on the same authorized ROOT input and reproduced the previously verified six object counts and zero flow counts",
+      "the downloaded revised PDF and PNG checksums match the output checksums stored by the server run",
+      "the rendered PNG was inspected and all trigger labels were confirmed outside the principal spectral structures",
+      "the author-provided PDF was copied unchanged into the chapter candidate and final directories with matching checksums"
+    ],
+    "notes": "The frozen input ROOT file has SHA-256 b165de9987c4547f75149092b62c6654b24b2c9d72ab8e8c4e1acfa32b77f1ff. Object entries are 23901467, 97602787, 1050062, 4695658, 97185, and 153877556 in panel order; every object has zero underflow and overflow. The revised two-row, three-column implementation was rerun with the same input and preserved these numerical summaries. The author-approved PDF was copied unchanged into thesis Sec. 3.3.4.",
+    "records": [
+      {
+        "result": "source definitions and six-panel mapping frozen",
+        "type": "static-source-inspection"
+      },
+      {
+        "command": "python3 syntax compilation and --help entry check",
+        "result": "passed",
+        "type": "syntax"
+      },
+      {
+        "result": "the original three-row, two-column layout, panel letters, and upper-right trigger labels rendered without overlap in a synthetic check",
+        "type": "original-synthetic-layout"
+      },
+      {
+        "result": "the revised two-row, three-column layout rendered without overlap while preserving the panel order, labels, shared logarithmic count range, and histogram contents",
+        "type": "revised-synthetic-layout"
+      },
+      {
+        "result": "the revised layout was generated on the authorized server from the same input SHA-256; all six object entries, in-range counts, and zero flow counts match the prior validated run",
+        "type": "revised-real-data-validation"
+      },
+      {
+        "result": "author approved the revised two-row, three-column output and the PDF checksum was preserved in the thesis-final copy",
+        "type": "revised-author-layout-review"
+      },
+      {
+        "result": "six 4096-bin objects checked on the authorized server; all counts lie in range and all flow bins are zero",
+        "type": "real-data-object-validation"
+      },
+      {
+        "result": "upper-right trigger labels checked against the rendered real-data PNG and accepted for thesis use",
+        "type": "author-layout-review"
+      },
+      {
+        "result": "PDF checksum preserved across candidate and thesis-final copies",
+        "type": "artifact-integrity"
+      }
+    ],
+    "status": "real_data_checked"
+  }
+}

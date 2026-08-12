@@ -1,0 +1,97 @@
+{
+  "author_decision": {
+    "date": "2026-08-06",
+    "notes": "The author approved the shared-scale all-channel overviews for the thesis appendix.",
+    "status": "confirmed"
+  },
+  "candidate": {
+    "artifacts": [
+      {
+        "path": "results/figures/time_walk/overview/all_crystals_before_correction.pdf",
+        "role": "before-correction-pdf",
+        "sha256": "9e28a029b41eeb6141a7c3804d6d1fd8d958f0ceb8edd5f2e9edaa7ca1cabb2e",
+        "size_bytes": 870208
+      },
+      {
+        "path": "results/figures/time_walk/overview/all_crystals_after_correction.pdf",
+        "role": "after-correction-pdf",
+        "sha256": "67125b38d5c19874b11f272b443f73c1bb34db8dc47c2650f8a24b8b156ef9b3",
+        "size_bytes": 868533
+      }
+    ],
+    "status": "generated"
+  },
+  "created_utc": "2026-08-11T00:00:00Z",
+  "figure_class": "reproducible_redraw",
+  "historical": {
+    "historical_outputs": [],
+    "input_objects": ["Canvas_1 TH2 count histogram for CsI00--CsI14", "f_00.out--f_14.out fit parameters"],
+    "publication_or_note_figure": "Thesis appendix all-channel extension of analysis-note Fig. 3",
+    "source_files": [
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step3-time/DrawRebin.ipynb",
+        "sha256": "862656569a9891278880b4a4c253882b1b4d44ecc8d5a61331684f7032734541"
+      }
+    ],
+    "status": "source_frozen"
+  },
+  "physics_contract": {
+    "binning": ["Each of the 15 historical two-dimensional histograms is cropped and summed in 16 x 16 cells before correction"],
+    "display_policy": ["separate 4 x 4 before/after overviews", "one logarithmic count range shared by all channels and correction states", "no count normalization"],
+    "fit_or_transform": "Apply each channel's frozen reciprocal time-amplitude correction cell by cell and re-histogram the corrected time coordinate.",
+    "inputs": ["All 15 authorized ROOT/parameter pairs from the frozen historical fit-output set"],
+    "normalization": "none",
+    "sample": "The reviewed March 4--10 GammaCaliData sample represented by the surviving 15 historical fit-output pairs.",
+    "selections": ["Require all 15 ROOT and parameter pairs before processing", "Use the historical TH2 object selected from each Canvas_1"],
+    "status": "frozen",
+    "variables": ["low-gain ADC-E address", "uncorrected detector time", "corrected gamma time", "bin counts"]
+  },
+  "portable": {
+    "command": "python3 plotting/plot_time_amplitude_correction.py --analysis-root /path/to/gamma2024 --all-crystals --output-dir results/figures",
+    "minimum_python": "3.6",
+    "preserved_root_sources": ["../gamma2024_code_snapshot/DataPreprocessing/step3-time/DrawRebin.ipynb"],
+    "python_entries": ["plotting/plot_time_amplitude_correction.py"],
+    "root_entries": [],
+    "status": "implemented"
+  },
+  "public_boundary": {
+    "contains_private_paths": false,
+    "internal_path_reference": "../../../DATA_PATHS.md",
+    "notes": "Experimental ROOT files, fit artifacts, and generated binary outputs are not distributed."
+  },
+  "schema_version": 1,
+  "stable_id": "time-amplitude-all",
+  "thesis": {
+    "adopted_artifacts": [
+      {
+        "path": "thesis-assets/03_cshine_experiment/cshine_gamma_time_walk_all_before_shared_scale.pdf",
+        "role": "before-correction-pdf",
+        "sha256": "9e28a029b41eeb6141a7c3804d6d1fd8d958f0ceb8edd5f2e9edaa7ca1cabb2e",
+        "size_bytes": 870208
+      },
+      {
+        "path": "thesis-assets/03_cshine_experiment/cshine_gamma_time_walk_all_after_shared_scale.pdf",
+        "role": "after-correction-pdf",
+        "sha256": "67125b38d5c19874b11f272b443f73c1bb34db8dc47c2650f8a24b8b156ef9b3",
+        "size_bytes": 868533
+      }
+    ],
+    "label": "fig:appendix-cshine-gamma-time-walk-all-before;fig:appendix-cshine-gamma-time-walk-all-after",
+    "section": "Appendix A",
+    "status": "used"
+  },
+  "title": "All-channel time-amplitude correlations before and after correction",
+  "updated_utc": "2026-08-11T00:00:00Z",
+  "validation": {
+    "checks": [
+      "All 15 input pairs were resolved before processing.",
+      "Every channel conserved counts through 16 x 16 rebinning and corrected-time re-histogramming.",
+      "The adopted PDF checksums equal the approved candidate checksums."
+    ],
+    "notes": "The common real-data logarithmic count range was 1--13621 counts.",
+    "records": [
+      {"result": "passed", "type": "all-channel-real-data-count-conservation-and-checksum"}
+    ],
+    "status": "real_data_checked"
+  }
+}

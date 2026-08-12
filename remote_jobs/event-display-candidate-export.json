@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "job_id": "event-display-candidate-export",
+  "description": "Copy historical event-display PDF candidates into one isolated, checksummed audit result.",
+  "uploads": [
+    {
+      "local": "tools/export_event_display_candidates.py",
+      "remote_name": "export_event_display_candidates.py"
+    }
+  ],
+  "commands": [
+    [
+      "python3",
+      "-m",
+      "py_compile",
+      "{remote_code_dir}/export_event_display_candidates.py"
+    ],
+    [
+      "python3",
+      "{remote_code_dir}/export_event_display_candidates.py",
+      "--analysis-root",
+      "{analysis_root}",
+      "--output-dir",
+      "{run_output_dir}/event_display_candidates"
+    ]
+  ],
+  "outputs": [
+    "event_display_candidates/manifest.json",
+    "event_display_candidates/lego.pdf",
+    "event_display_candidates/lego_2.pdf",
+    "event_display_candidates/lego_3.pdf",
+    "event_display_candidates/lego_4.pdf",
+    "event_display_candidates/lego_5.pdf",
+    "event_display_candidates/lego_6.pdf",
+    "event_display_candidates/EventALL/lego_0.pdf",
+    "event_display_candidates/EventALL/lego_3.pdf",
+    "event_display_candidates/EventALL/output.pdf"
+  ]
+}

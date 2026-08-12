@@ -1,0 +1,14 @@
+{
+  "host": "analysis.example.org",
+  "user": "your-user-name",
+  "port": 22,
+  "analysis_root": "/authorized/path/to/analysis-root",
+  "remote_workdir": "/authorized/path/to/portable-workdir",
+  "environment_setup": [],
+  "control_path": "%d/.ssh/cm-%C",
+  "control_persist_seconds": 900,
+  "connect_timeout_seconds": 15,
+  "connection_attempts": 2,
+  "server_alive_interval_seconds": 60,
+  "server_alive_count_max": 3
+}

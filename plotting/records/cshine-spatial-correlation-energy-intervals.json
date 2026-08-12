@@ -1,0 +1,177 @@
+{
+  "author_decision": {
+    "date": "2026-08-10",
+    "notes": "After the physics contract had been reviewed, the author explicitly requested generation and direct thesis integration of the real-data redraw.",
+    "status": "confirmed"
+  },
+  "candidate": {
+    "artifacts": [
+      {
+        "path": "results/figures/spatial_correlation_energy_intervals/cshine_gamma_spatial_correlation_energy_intervals_horizontal.pdf",
+        "recorded_utc": "2026-08-10T20:43:02Z",
+        "role": "pdf",
+        "sha256": "4810176aff2a56b62a7dc9d1b486ab11af88cfeafe9a309a87786969db9457a8",
+        "size_bytes": 627660
+      },
+      {
+        "path": "results/figures/spatial_correlation_energy_intervals/cshine_gamma_spatial_correlation_energy_intervals_horizontal.png",
+        "recorded_utc": "2026-08-10T20:43:02Z",
+        "role": "png",
+        "sha256": "c0788889b1c63e273ba78b97dca188ad2df67db731072092235ee7bdbd3fd9a0",
+        "size_bytes": 96824
+      },
+      {
+        "path": "results/figures/spatial_correlation_energy_intervals/cshine_gamma_spatial_correlation_energy_intervals_horizontal.json",
+        "recorded_utc": "2026-08-10T20:43:02Z",
+        "role": "metadata",
+        "sha256": "aebffb7319c0325525de59cea7eca67f0b6f4fbf19e13b5107c3958f31981dba",
+        "size_bytes": 1930
+      }
+    ],
+    "status": "generated"
+  },
+  "created_utc": "2026-08-10T20:23:42Z",
+  "figure_class": "reproducible_redraw",
+  "historical": {
+    "historical_outputs": [
+      {
+        "path": "analysis-note/figures/deltaxdeltay.pdf",
+        "role": "manually assembled reference figure",
+        "sha256": "c0114c197e32f2d5216634c2e0ff343e2c2818410f37eb10397694c36c764696",
+        "size_bytes": 159306
+      }
+    ],
+    "input_objects": [
+      "h2_check.root:ALL_h2_ax_ay_10_100",
+      "h2_check.root:ALL_h2_ax_ay_100_inf"
+    ],
+    "publication_or_note_figure": "Analysis-note Fig. 10; PRC Supplementary Fig. deltaxdeltay",
+    "source_files": [
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/h2_check.C",
+        "sha256": "d2870f286774c24f878b9eccdb7e9c2da1f3beecc1379a29aab91f321286096e"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/Drawhistos.C",
+        "sha256": "9302e43a298451a55d7f5964c3909349a7d9573c3d694bf79ded27cc2d54444e"
+      },
+      {
+        "path": "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/get_ax_ay.hh",
+        "sha256": "2f38bde0d3ff6b61ac340c53e96573e117abea2b3354421d9f654846aef625ce"
+      }
+    ],
+    "status": "source_frozen"
+  },
+  "physics_contract": {
+    "binning": [
+      "Both panels: 70 x 70 bins over 0--7 cm on the delta_x and delta_y axes"
+    ],
+    "display_policy": [
+      "horizontal two-panel layout",
+      "complete axes and an independent logarithmic count color scale in each panel",
+      "panel labels at upper left",
+      "zero-count bins masked; positive counts unchanged"
+    ],
+    "fit_or_transform": "get_ax_ay computes energy-weighted mean absolute displacement in the crystal grid; h2_check.C multiplies both components by the 7 cm crystal pitch before filling",
+    "inputs": [
+      "DataPreprocessing/step7-DeltaYrelated/h2_check.root",
+      "ALL_h2_ax_ay_10_100",
+      "ALL_h2_ax_ay_100_inf"
+    ],
+    "normalization": "none",
+    "sample": "Reconstructed candidates from the fixed 60-file March 4--10 GammaCaliData sample. Accepted cores are central units 5, 6, 9, 10 and side units 4, 7, 8, 11, 13, 14; count_veto == 0 is required for side cores.",
+    "selections": [
+      "panel (a): 10 <= E_tot <= 100 MeV",
+      "panel (b): E_tot > 100 MeV",
+      "no local-multiplicity requirement for the two ALL_h2 source objects"
+    ],
+    "status": "frozen",
+    "variables": [
+      "delta_x = sum_i E_i |x_i - xbar| / E_tot [cm]",
+      "delta_y = sum_i E_i |y_i - ybar| / E_tot [cm]"
+    ]
+  },
+  "portable": {
+    "command": "python3 plotting/plot_spatial_correlation_energy_intervals.py --analysis-root /path/to/gamma2024 --output-dir results/figures",
+    "minimum_python": "3.6",
+    "preserved_root_sources": [
+      "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/h2_check.C",
+      "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/Drawhistos.C",
+      "../gamma2024_code_snapshot/DataPreprocessing/step7-DeltaYrelated/get_ax_ay.hh"
+    ],
+    "python_entries": [
+      "plotting/plot_spatial_correlation_energy_intervals.py"
+    ],
+    "root_entries": [
+      "plotting/root/draw_spatial_correlation_energy_intervals.C"
+    ],
+    "status": "implemented"
+  },
+  "public_boundary": {
+    "contains_private_paths": false,
+    "internal_path_reference": "../../../DATA_PATHS.md",
+    "notes": "Experimental data and generated binary outputs are not distributed."
+  },
+  "schema_version": 1,
+  "stable_id": "cshine-spatial-correlation-energy-intervals",
+  "thesis": {
+    "adopted_artifacts": [
+      {
+        "path": "thesis-assets/03_cshine_experiment/cshine_gamma_spatial_correlation_energy_intervals.pdf",
+        "recorded_utc": "2026-08-10T20:43:36Z",
+        "role": "pdf",
+        "sha256": "4810176aff2a56b62a7dc9d1b486ab11af88cfeafe9a309a87786969db9457a8",
+        "size_bytes": 627660
+      }
+    ],
+    "label": "fig:cshine-gamma-spatial-correlation-energy-intervals",
+    "section": "Sec. 3.4.1",
+    "status": "used"
+  },
+  "title": "Spatial correlation between delta_x and delta_y in two energy intervals",
+  "updated_utc": "2026-08-10T20:45:24Z",
+  "validation": {
+    "checks": [
+      "Python syntax check passed",
+      "horizontal layout passed a local synthetic-array check without requiring ROOT",
+      "runtime preflight fixes both object names, dimensions, ranges, non-negative bins, and non-empty inputs",
+      "real-data run read the two frozen ROOT objects without rebinning or normalization",
+      "all 83807 low-energy and 1574 high-energy counts are inside the displayed 0--7 cm ranges",
+      "downloaded PDF and metadata checksums match the server outputs"
+    ],
+    "notes": "The real-data redraw uses the frozen source objects and preserves their 70 x 70 binning, positive bin counts, independent logarithmic scales, and inclusive 10 <= E_tot <= 100 MeV lower interval. The thesis prose was synchronized to the source definition before integration.",
+    "records": [
+      {
+        "command": "python3 -m py_compile plotting/plot_spatial_correlation_energy_intervals.py",
+        "result": "passed",
+        "type": "syntax"
+      },
+      {
+        "input": "synthetic 70 x 70 arrays over 0--7 cm",
+        "result": "PDF and PNG created successfully outside the repository",
+        "type": "presentation-layout"
+      },
+      {
+        "input_sha256": "3b43dc8ffd86a346636f7f41c4045922c07b8f7916a5fa20cdf3ab3c2effb8be",
+        "objects": {
+          "ALL_h2_ax_ay_100_inf": {
+            "entries": 1574,
+            "in_range_counts": 1574,
+            "maximum_bin_count": 88,
+            "nonzero_bins": 632
+          },
+          "ALL_h2_ax_ay_10_100": {
+            "entries": 83807,
+            "in_range_counts": 83807,
+            "maximum_bin_count": 28923,
+            "nonzero_bins": 1699
+          }
+        },
+        "result": "passed",
+        "software": "Python 3.6.9; ROOT 6.28/04; NumPy 1.19.5; Matplotlib 3.3.4",
+        "type": "real-data-object-check"
+      }
+    ],
+    "status": "real_data_checked"
+  }
+}

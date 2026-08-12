@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "job_id": "fast-coincidence-background-subtraction",
+  "description": "Reconstruct, validate, and redraw the equal-width random-window subtraction used for the fast-coincidence cross-check in a horizontal two-panel layout.",
+  "uploads": [
+    {
+      "local": "plotting/plot_fast_coincidence_background_subtraction.py",
+      "remote_name": "plot_fast_coincidence_background_subtraction.py"
+    },
+    {
+      "local": "plotting/root/draw_fast_coincidence_background_subtraction.C",
+      "remote_name": "draw_fast_coincidence_background_subtraction.C"
+    }
+  ],
+  "commands": [
+    [
+      "python3",
+      "-m",
+      "py_compile",
+      "{remote_code_dir}/plot_fast_coincidence_background_subtraction.py"
+    ],
+    [
+      "root",
+      "-l",
+      "-b",
+      "-q",
+      "{remote_code_dir}/draw_fast_coincidence_background_subtraction.C(\"{analysis_root}\",\"{run_output_dir}\",false)"
+    ],
+    [
+      "python3",
+      "{remote_code_dir}/plot_fast_coincidence_background_subtraction.py",
+      "--analysis-root",
+      "{analysis_root}",
+      "--output-dir",
+      "{run_output_dir}"
+    ]
+  ],
+  "outputs": [
+    "fast_coincidence_background_subtraction/cshine_gamma_fast_coincidence_background_subtraction_root_reference.pdf",
+    "fast_coincidence_background_subtraction/cshine_gamma_fast_coincidence_background_subtraction_root_reference.png",
+    "fast_coincidence_background_subtraction/cshine_gamma_fast_coincidence_background_subtraction_horizontal.pdf",
+    "fast_coincidence_background_subtraction/cshine_gamma_fast_coincidence_background_subtraction_horizontal.png",
+    "fast_coincidence_background_subtraction/cshine_gamma_fast_coincidence_background_subtraction_horizontal.json"
+  ]
+}
